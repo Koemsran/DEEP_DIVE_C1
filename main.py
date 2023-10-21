@@ -285,6 +285,8 @@ grass6_id = canvas.create_image(1500, 700, image = img_grass7)
 stone1_id = canvas.create_image(1000, 685, image = img_stone1)
 stone1_id = canvas.create_image(2000, 685, image = img_stone2)
 
+#create enemy image
+
 
 
 # Function to update the object's position
@@ -330,7 +332,6 @@ def update_position_up():
         
         canvas.move('BUBBLE', 0, -2)
 
-
         window.after(30, update_position_up)
     else:
         move_up()
@@ -339,11 +340,6 @@ def move_up():
     canvas.delete('BUBBLE')
 
     bubble_coods = canvas.coords('BUBBLE1')
-    # bubble_coods = canvas.coords(object2)
-    # bubble_coods = canvas.coords(object3)
-    # bubble_coods = canvas.coords(object4)
-    # bubble_coods = canvas.coords(object5)
-    # bubble_coods = canvas.coords(object6)
     
     if bubble_coods[1]>= -100 :
         canvas.move(object1, 0, -4)
