@@ -21,14 +21,14 @@ canvas.configure(xscrollcommand=scrollbar_bottom.set)
 scrollbar_bottom.place(relx=0, rely=1, relwidth=1, anchor='sw')
 
 #create image
-border_bottom_image = Image.open('border_bottom.jpg')
+border_bottom_image = Image.open('images/border_bottom.jpg')
 img_bottom= ImageTk.PhotoImage(border_bottom_image)
 
 bom_image = Image.open('images/bom.png')
 bom_resize = bom_image.resize((70,70))
 img_bom =ImageTk.PhotoImage(bom_resize)
 
-bom2_image = Image.open('bom2.png')
+bom2_image = Image.open('images/bom2.png')
 img_bom2 =ImageTk.PhotoImage(bom2_image)
 
 bg1_image = Image.open('images/bg1.png')
@@ -53,21 +53,76 @@ bubble4 = ImageTk.PhotoImage(bubble4_image)
 bubble5_image = Image.open('images/bubbles/bubble5.png')
 bubble5 = ImageTk.PhotoImage(bubble5_image) 
 
-bubble6_image = Image.open('bubble6.png')
+bubble6_image = Image.open('images/bubbles/bubble6.png')
 bubble6 = ImageTk.PhotoImage(bubble6_image) 
 
-bubble7_image = Image.open('bubble7.png')
+bubble7_image = Image.open('images/bubbles/bubble7.png')
 bubble7 = ImageTk.PhotoImage(bubble7_image) 
 
-bubble8_image = Image.open('bubble8.png')
+bubble8_image = Image.open('images/bubbles/bubble8.png')
 bubble8 = ImageTk.PhotoImage(bubble8_image) 
 
-bubble9_image = Image.open('bubble9.png')
+bubble9_image = Image.open('images/bubbles/bubble9.png')
 bubble9 = ImageTk.PhotoImage(bubble9_image) 
 
-bubble10_image = Image.open('bubble10.png')
+bubble10_image = Image.open('images/bubbles/bubble10.png')
 bubble10 = ImageTk.PhotoImage(bubble10_image) 
 
+bubble11_image = Image.open('images/bubbles/bubble6.png')
+bubble11 = ImageTk.PhotoImage(bubble11_image) 
+
+bubble12_image = Image.open('images/bubbles/bubble7.png')
+bubble12 = ImageTk.PhotoImage(bubble12_image) 
+
+bubble13_image = Image.open('images/bubbles/bubble8.png')
+bubble13 = ImageTk.PhotoImage(bubble13_image) 
+
+bubble14_image = Image.open('images/bubbles/bubble9.png')
+bubble14 = ImageTk.PhotoImage(bubble14_image) 
+bubble_image = Image.open('images/bubbles/bubble.png')
+bubble = ImageTk.PhotoImage(bubble_image)
+
+bubble15_image = Image.open('images/bubbles/bubble1.png')
+bubble15 = ImageTk.PhotoImage(bubble15_image)
+
+bubble16_image = Image.open('images/bubbles/bubble2.png')
+bubble16 = ImageTk.PhotoImage(bubble16_image)
+
+bubble17_image = Image.open('images/bubbles/bubble3.png')
+bubble17 = ImageTk.PhotoImage(bubble17_image)
+
+bubble18_image = Image.open('images/bubbles/bubble4.png')
+bubble18 = ImageTk.PhotoImage(bubble18_image)
+
+bubble19_image = Image.open('images/bubbles/bubble5.png')
+bubble19 = ImageTk.PhotoImage(bubble19_image) 
+
+bubble20_image = Image.open('images/bubbles/bubble6.png')
+bubble20 = ImageTk.PhotoImage(bubble20_image) 
+
+bubble21_image = Image.open('images/bubbles/bubble7.png')
+bubble21 = ImageTk.PhotoImage(bubble21_image) 
+
+bubble22_image = Image.open('images/bubbles/bubble8.png')
+bubble22 = ImageTk.PhotoImage(bubble22_image) 
+
+bubble23_image = Image.open('images/bubbles/bubble9.png')
+bubble23 = ImageTk.PhotoImage(bubble23_image) 
+
+bubble24_image = Image.open('images/bubbles/bubble10.png')
+bubble24 = ImageTk.PhotoImage(bubble24_image) 
+
+bubble25_image = Image.open('images/bubbles/bubble6.png')
+bubble25 = ImageTk.PhotoImage(bubble25_image) 
+
+bubble26_image = Image.open('images/bubbles/bubble7.png')
+bubble26 = ImageTk.PhotoImage(bubble26_image) 
+
+bubble27_image = Image.open('images/bubbles/bubble8.png')
+bubble27 = ImageTk.PhotoImage(bubble27_image) 
+
+bubble28_image = Image.open('images/bubbles/bubble9.png')
+bubble28 = ImageTk.PhotoImage(bubble28_image) 
 
 
 #group fish image
@@ -166,25 +221,35 @@ canvas.create_image(3545, 750, image = img_bottom, tags="PLATFORM")
 canvas.create_image(4045, 750, image = img_bottom, tags="PLATFORM")
 
 # Create a falling object (bubble water)
-<<<<<<< HEAD
-object_id = canvas.create_image(100, 700, image = bubble)
-object1_id = canvas.create_image(600, 700, image = bubble1)
-object2_id = canvas.create_image(350, 900, image = bubble2)
-object3_id = canvas.create_image(900, 700, image = bubble3)
-object4_id = canvas.create_image(1200, 750, image = bubble4)
-object5_id = canvas.create_image(350, 800, image = bubble5) 
-object6_id = canvas.create_image(1000, 800, image = bubble6) 
-object7_id = canvas.create_image(1200, 800, image = bubble7) 
-object8_id = canvas.create_image(1500, 800, image = bubble8) 
-object9_id = canvas.create_image(1700, 800, image = bubble9) 
-object10_id = canvas.create_image(1900, 800, image = bubble10) 
-=======
 object_id = canvas.create_image(100, 700, image = bubble, tags='BUBBLE')
 object1_id = canvas.create_image(600, 700, image = bubble1, tags='BUBBLE')
 object2_id = canvas.create_image(350, 900, image = bubble2, tags='BUBBLE')
 object3_id = canvas.create_image(900, 700, image = bubble3, tags='BUBBLE')
 object4_id = canvas.create_image(1200, 750, image = bubble4, tags='BUBBLE')
-object5_id = canvas.create_image(350, 800, image = bubble5, tags='BUBBLE') 
+object5_id = canvas.create_image(1500, 800, image = bubble5, tags='BUBBLE') 
+object6_id = canvas.create_image(2000, 700, image = bubble6, tags='BUBBLE')
+object7_id = canvas.create_image(1800, 700, image = bubble7, tags='BUBBLE')
+object8_id = canvas.create_image(1080, 900, image = bubble8, tags='BUBBLE')
+object9_id = canvas.create_image(900, 700, image = bubble9, tags='BUBBLE')
+object10_id = canvas.create_image(3000, 750, image = bubble10, tags='BUBBLE')
+object11_id = canvas.create_image(3400, 700, image = bubble11, tags='BUBBLE')
+object12_id = canvas.create_image(3500, 750, image = bubble12, tags='BUBBLE')
+object13_id = canvas.create_image(2700, 800, image = bubble13, tags='BUBBLE') 
+object14_id = canvas.create_image(1300, 700, image = bubble14, tags='BUBBLE')
+object15_id = canvas.create_image(600, 700, image = bubble15, tags='BUBBLE')
+object16_id = canvas.create_image(350, 900, image = bubble16, tags='BUBBLE')
+object17_id = canvas.create_image(900, 700, image = bubble17, tags='BUBBLE')
+object18_id = canvas.create_image(1200, 750, image = bubble18, tags='BUBBLE')
+object19_id = canvas.create_image(1500, 800, image = bubble19, tags='BUBBLE') 
+object20_id = canvas.create_image(2000, 400, image = bubble20, tags='BUBBLE')
+object21_id = canvas.create_image(1800, 700, image = bubble21, tags='BUBBLE')
+object22_id = canvas.create_image(1080, 900, image = bubble22, tags='BUBBLE')
+object23_id = canvas.create_image(900, 700, image = bubble23, tags='BUBBLE')
+object24_id = canvas.create_image(3000, 750, image = bubble24, tags='BUBBLE')
+object25_id = canvas.create_image(3400, 700, image = bubble25, tags='BUBBLE')
+object26_id = canvas.create_image(3500, 750, image = bubble26, tags='BUBBLE')
+object27_id = canvas.create_image(2700, 800, image = bubble27, tags='BUBBLE') 
+object28_id = canvas.create_image(1300, 700, image = bubble28, tags='BUBBLE')
 
 object1 = canvas.create_image(100, 1000, image = bubble, tags='BUBBLE1')
 object2 = canvas.create_image(600, 1000, image = bubble1, tags='BUBBLE1')
@@ -192,7 +257,6 @@ object3 = canvas.create_image(350, 900, image = bubble2, tags='BUBBLE1')
 object4 = canvas.create_image(900, 1000, image = bubble3, tags='BUBBLE1')
 object5 = canvas.create_image(1200, 1000, image = bubble4, tags='BUBBLE1')
 object6 = canvas.create_image(350, 900, image = bubble5, tags='BUBBLE1') 
->>>>>>> 7231c70f9e9a0c9967259b27adae11ff11870b9f
 
 
 # Create a falling object (boms)
@@ -246,75 +310,27 @@ canvas.after(10, moveBom)
 
 # Function to update the object's position
 def update_position_down():
-    bubble_coods = canvas.coords(object_id)
-    bubble_coods = canvas.coords(object1_id)
-    bubble_coods = canvas.coords(object2_id)
-    bubble_coods = canvas.coords(object3_id)
-    bubble_coods = canvas.coords(object4_id)
-    bubble_coods = canvas.coords(object5_id)
-    bubble_coods = canvas.coords(object6_id)
-    bubble_coods = canvas.coords(object7_id)
-    bubble_coods = canvas.coords(object8_id)
-    bubble_coods = canvas.coords(object9_id)
-    bubble_coods = canvas.coords(object10_id)
+    bubble_coods = canvas.coords('BUBBLE')
+
 
     if bubble_coods[1]< 0 and bubble_coods[1]>-100:
-        canvas.move(object_id, 0, 4)
-        canvas.move(object1_id, 0, 3.2)
-        canvas.move(object2_id, 0, 3.5)
-        canvas.move(object3_id, 0, 4.2)
-        canvas.move(object4_id, 0, 4)
-        canvas.move(object5_id, 0, 3.2)
-        canvas.move(object6_id, 0, 4)
-        canvas.move(object7_id, 0, 3.2)
-        canvas.move(object8_id, 0, 3.5)
-        canvas.move(object9_id, 0, 4.2)
-        canvas.move(object10_id, 0, 3.2)
+        canvas.move('BUBBLE', 0, 3)
+        
         window.after(50, update_position_down)
     elif bubble_coods[1]<-100:
         move_up()
     else:
         update_position_up()
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 7231c70f9e9a0c9967259b27adae11ff11870b9f
 def update_position_up():
-    bubble_coods = canvas.coords(object_id)
-    bubble_coods = canvas.coords(object1_id)
-    bubble_coods = canvas.coords(object2_id)
-    bubble_coods = canvas.coords(object3_id)
-    bubble_coods = canvas.coords(object4_id)
-<<<<<<< HEAD
-    bubble_coods = canvas.coords(object5_id)
-    bubble_coods = canvas.coords(object6_id)
-    bubble_coods = canvas.coords(object7_id)
-    bubble_coods = canvas.coords(object8_id)
-    bubble_coods = canvas.coords(object9_id)
-    bubble_coods = canvas.coords(object10_id)
-    if bubble_coods[1]> -500 :
-=======
+    bubble_coods = canvas.coords('BUBBLE')
+    
     
     if bubble_coods[1]>= -100 :
->>>>>>> 7231c70f9e9a0c9967259b27adae11ff11870b9f
-        canvas.move(object_id, 0, -4)
-        canvas.move(object1_id, 0, -3)
-        canvas.move(object2_id, 0, -3.5)
-<<<<<<< HEAD
-        canvas.move(object3_id, 0, -4.2)
-        canvas.move(object4_id, 0, -4)
-        canvas.move(object5_id, 0, -3.2)
-        canvas.move(object6_id, 0, -4)
-        canvas.move(object7_id, 0, -3.2)
-        canvas.move(object8_id, 0, -3.5)
-        canvas.move(object9_id, 0, -4.2)
-        canvas.move(object10_id, 0, -3.2)
-        window.after(30, update_position_up)
-=======
-        canvas.move(object3_id, 0, -1.5)
-        canvas.move(object4_id, 0, -2)
-        canvas.move(object5_id, 0, -4)
+        
+        canvas.move('BUBBLE', 0, -2)
+
+
         window.after(30, update_position_up)
     else:
         move_up()
@@ -322,12 +338,12 @@ def update_position_up():
 def move_up():
     canvas.delete('BUBBLE')
 
-    bubble_coods = canvas.coords(object1)
-    bubble_coods = canvas.coords(object2)
-    bubble_coods = canvas.coords(object3)
-    bubble_coods = canvas.coords(object4)
-    bubble_coods = canvas.coords(object5)
-    bubble_coods = canvas.coords(object6)
+    bubble_coods = canvas.coords('BUBBLE1')
+    # bubble_coods = canvas.coords(object2)
+    # bubble_coods = canvas.coords(object3)
+    # bubble_coods = canvas.coords(object4)
+    # bubble_coods = canvas.coords(object5)
+    # bubble_coods = canvas.coords(object6)
     
     if bubble_coods[1]>= -100 :
         canvas.move(object1, 0, -4)
@@ -341,24 +357,23 @@ def move_up():
         canvas.delete('BUBBLE1')
         update_position_up()
 
->>>>>>> 7231c70f9e9a0c9967259b27adae11ff11870b9f
 
 window.after(30, update_position_up)
 
 
-
+#create player
 X_VELOCITY = 9
 Y_VELOCITY = 9
 
 
 
-player_img = Image.open('player_right.png')
+player_img = Image.open('images/players/player_right.png')
 player_id = ImageTk.PhotoImage(player_img)
 
-player_img2 =Image.open('player_left.png')
+player_img2 =Image.open('images/players/player_left.png')
 player_id2 = ImageTk.PhotoImage(player_img2)
 
-player_img3 =Image.open('player_down.png')
+player_img3 =Image.open('images/players/player_down.png')
 player_id3 = ImageTk.PhotoImage(player_img3)
 
 
@@ -368,9 +383,6 @@ player = canvas.create_image(50, 50, image=player_id, )
 
 def move(x_velocity,y_velocity):
     canvas.move(player, x_velocity, y_velocity)
-
-    #run 
-    # window.after(30, move, x_velocity, y_velocity)
 
 
 def check_direction(event):
