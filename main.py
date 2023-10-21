@@ -212,8 +212,6 @@ def moveBom():
 canvas.after(10, moveBom)
 
 
-<<<<<<< HEAD
-=======
 # Function to update the object's position
 def update_position_down():
     bubble_coods = canvas.coords(object_id)
@@ -250,5 +248,4 @@ def update_position_up():
         window.after(30, update_position_up)
 window.after(30, update_position_up)
 
->>>>>>> 59e8f030cc1378e797e012526e8c33dca820547b
 window.mainloop()
