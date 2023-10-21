@@ -35,33 +35,33 @@ bg1_image = Image.open('images/bg1.png')
 img_bg1 =ImageTk.PhotoImage(bg1_image)
 
 #group fish image
-# fish1_image = Image.open('fish1.gif')
-# fish1_resize = fish1_image.resize((100,100))
-# img_fish1 =ImageTk.PhotoImage(fish1_resize)
+fish1_image = Image.open('images/fishes/fish1.gif')
+fish1_resize = fish1_image.resize((100,100))
+img_fish1 =ImageTk.PhotoImage(fish1_resize)
 
-# fish2_image = Image.open('fish2.gif')
-# fish2_resize = fish2_image.resize((100,100))
-# img_fish2 =ImageTk.PhotoImage(fish2_resize)
+fish2_image = Image.open('images/fishes/fish2.gif')
+fish2_resize = fish2_image.resize((100,100))
+img_fish2 =ImageTk.PhotoImage(fish2_resize)
 
-# fish3_image = Image.open('fish3.gif')
-# fish3_resize = fish3_image.resize((100,100))
-# img_fish3 =ImageTk.PhotoImage(fish3_resize)
+fish3_image = Image.open('images/fishes/fish3.gif')
+fish3_resize = fish3_image.resize((100,100))
+img_fish3 =ImageTk.PhotoImage(fish3_resize)
 
-# fish4_image = Image.open('fish4.gif')
-# fish4_resize = fish4_image.resize((100,100))
-# img_fish4 =ImageTk.PhotoImage(fish4_resize)
+fish4_image = Image.open('images/fishes/fish4.gif')
+fish4_resize = fish4_image.resize((100,100))
+img_fish4 =ImageTk.PhotoImage(fish4_resize)
 
-# fish5_image = Image.open('fish5.gif')
-# fish5_resize = fish5_image.resize((100,100))
-# img_fish5 =ImageTk.PhotoImage(fish5_resize)
+fish5_image = Image.open('images/fishes/fish5.gif')
+fish5_resize = fish5_image.resize((100,100))
+img_fish5 =ImageTk.PhotoImage(fish5_resize)
 
-# fish6_image = Image.open('fish6.gif')
-# fish6_resize = fish6_image.resize((100,100))
-# img_fish6 =ImageTk.PhotoImage(fish6_resize)
+fish6_image = Image.open('images/fishes/fish6.gif')
+fish6_resize = fish6_image.resize((100,100))
+img_fish6 =ImageTk.PhotoImage(fish6_resize)
 
-# fish7_image = Image.open('fish7.gif')
-# fish7_resize = fish7_image.resize((100,100))
-# img_fish7 =ImageTk.PhotoImage(fish7_resize)
+fish7_image = Image.open('images/fishes/fish7.gif')
+fish7_resize = fish7_image.resize((100,100))
+img_fish7 =ImageTk.PhotoImage(fish7_resize)
 
 #grass image
 
@@ -135,13 +135,13 @@ bom_id = canvas.create_image(190, 200, image = img_bom)
 bom2_id = canvas.create_image(500, 685, image = img_bom2)
 
 # Create a falling object (fishes)
-# fish1_id = canvas.create_image(190, 200, image = img_fish1)
-# fish2_id = canvas.create_image(300, 200, image = img_fish2)
-# fish3_id = canvas.create_image(300, 400, image = img_fish3)
-# fish4_id = canvas.create_image(500, 700, image = img_fish4)
-# fish5_id = canvas.create_image(700, 300, image = img_fish5)
-# fish6_id = canvas.create_image(600, 500, image = img_fish6)
-# fish7_id = canvas.create_image(50, 300, image = img_fish7)
+fish1_id = canvas.create_image(190, 200, image = img_fish1)
+fish2_id = canvas.create_image(300, 200, image = img_fish2)
+fish3_id = canvas.create_image(300, 400, image = img_fish3)
+fish4_id = canvas.create_image(800, 680, image = img_fish4)
+fish5_id = canvas.create_image(700, 300, image = img_fish5)
+fish6_id = canvas.create_image(600, 500, image = img_fish6)
+fish7_id = canvas.create_image(50, 300, image = img_fish7)
 
 # # Create a falling object (grasses)
 grass1_id = canvas.create_image(1200, 565, image = img_grass1)
@@ -177,8 +177,6 @@ def moveBom():
         yspeed = -yspeed
     canvas.after(10, moveBom)
 canvas.after(10, moveBom)
-
-
 
 
 window.mainloop()
