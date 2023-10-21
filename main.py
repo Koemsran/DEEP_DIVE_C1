@@ -6,10 +6,6 @@ window = tk.Tk()
 window.title('Juggle-Game')
 window.attributes('-fullscreen', True)
 
-#speed
-X_VELOCITY = 9
-Y_VELOCITY = 9
-
 SCREEN_WIDTH = 3000
 SCREEN_HEIGHT = 900
 
@@ -56,6 +52,22 @@ bubble4 = ImageTk.PhotoImage(bubble4_image)
 
 bubble5_image = Image.open('bubble5.png')
 bubble5 = ImageTk.PhotoImage(bubble5_image) 
+
+bubble6_image = Image.open('bubble6.png')
+bubble6 = ImageTk.PhotoImage(bubble6_image) 
+
+bubble7_image = Image.open('bubble7.png')
+bubble7 = ImageTk.PhotoImage(bubble7_image) 
+
+bubble8_image = Image.open('bubble8.png')
+bubble8 = ImageTk.PhotoImage(bubble8_image) 
+
+bubble9_image = Image.open('bubble9.png')
+bubble9 = ImageTk.PhotoImage(bubble9_image) 
+
+bubble10_image = Image.open('bubble10.png')
+bubble10 = ImageTk.PhotoImage(bubble10_image) 
+
 
 
 
@@ -161,6 +173,11 @@ object2_id = canvas.create_image(350, 900, image = bubble2)
 object3_id = canvas.create_image(900, 700, image = bubble3)
 object4_id = canvas.create_image(1200, 750, image = bubble4)
 object5_id = canvas.create_image(350, 800, image = bubble5) 
+object6_id = canvas.create_image(1000, 800, image = bubble6) 
+object7_id = canvas.create_image(1200, 800, image = bubble7) 
+object8_id = canvas.create_image(1500, 800, image = bubble8) 
+object9_id = canvas.create_image(1700, 800, image = bubble9) 
+object10_id = canvas.create_image(1900, 800, image = bubble10) 
 
 
 # Create a falling object (boms)
@@ -220,6 +237,11 @@ def update_position_down():
     bubble_coods = canvas.coords(object3_id)
     bubble_coods = canvas.coords(object4_id)
     bubble_coods = canvas.coords(object5_id)
+    bubble_coods = canvas.coords(object6_id)
+    bubble_coods = canvas.coords(object7_id)
+    bubble_coods = canvas.coords(object8_id)
+    bubble_coods = canvas.coords(object9_id)
+    bubble_coods = canvas.coords(object10_id)
 
     if bubble_coods[1]< 0:
         canvas.move(object_id, 0, 4)
@@ -227,25 +249,87 @@ def update_position_down():
         canvas.move(object2_id, 0, 3.5)
         canvas.move(object3_id, 0, 4.2)
         canvas.move(object4_id, 0, 4)
-        canvas.move(object5_id, 0, 4)
+        canvas.move(object5_id, 0, 3.2)
+        canvas.move(object6_id, 0, 4)
+        canvas.move(object7_id, 0, 3.2)
+        canvas.move(object8_id, 0, 3.5)
+        canvas.move(object9_id, 0, 4.2)
+        canvas.move(object10_id, 0, 3.2)
         window.after(50, update_position_down)
     else:
         update_position_up()
+
 def update_position_up():
     bubble_coods = canvas.coords(object_id)
     bubble_coods = canvas.coords(object1_id)
     bubble_coods = canvas.coords(object2_id)
     bubble_coods = canvas.coords(object3_id)
     bubble_coods = canvas.coords(object4_id)
-    print(bubble_coods)
+    bubble_coods = canvas.coords(object5_id)
+    bubble_coods = canvas.coords(object6_id)
+    bubble_coods = canvas.coords(object7_id)
+    bubble_coods = canvas.coords(object8_id)
+    bubble_coods = canvas.coords(object9_id)
+    bubble_coods = canvas.coords(object10_id)
     if bubble_coods[1]> -500 :
         canvas.move(object_id, 0, -4)
         canvas.move(object1_id, 0, -3.2)
         canvas.move(object2_id, 0, -3.5)
         canvas.move(object3_id, 0, -4.2)
         canvas.move(object4_id, 0, -4)
-        canvas.move(object5_id, 0, -4)
+        canvas.move(object5_id, 0, -3.2)
+        canvas.move(object6_id, 0, -4)
+        canvas.move(object7_id, 0, -3.2)
+        canvas.move(object8_id, 0, -3.5)
+        canvas.move(object9_id, 0, -4.2)
+        canvas.move(object10_id, 0, -3.2)
         window.after(30, update_position_up)
+
 window.after(30, update_position_up)
+
+
+
+X_VELOCITY = 9
+Y_VELOCITY = 9
+
+
+
+player_img = Image.open('player_right.png')
+player_id = ImageTk.PhotoImage(player_img)
+
+player_img2 =Image.open('player_left.png')
+player_id2 = ImageTk.PhotoImage(player_img2)
+
+player_img3 =Image.open('player_down.png')
+player_id3 = ImageTk.PhotoImage(player_img3)
+
+
+#it similar pading
+player = canvas.create_image(50, 50, image=player_id, )
+
+
+def move(x_velocity,y_velocity):
+    canvas.move(player, x_velocity, y_velocity)
+
+    #run 
+    # window.after(30, move, x_velocity, y_velocity)
+
+
+def check_direction(event):
+    if event.keysym == "Left":
+        canvas.itemconfig(player, image=player_id2)
+        move(-X_VELOCITY,0)
+    elif event.keysym == "Right":
+        canvas.itemconfig(player, image=player_id)
+        move(X_VELOCITY,0)
+    elif event.keysym == "Up":
+        canvas.itemconfig(player, image=player_id)
+        move(0,-Y_VELOCITY)
+    elif event.keysym == "Down":
+        canvas.itemconfig(player, image=player_id3)
+        move(0,Y_VELOCITY)
+
+window.bind("<Key>", check_direction)
+
 
 window.mainloop()
