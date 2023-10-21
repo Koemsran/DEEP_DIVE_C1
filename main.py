@@ -24,11 +24,14 @@ scrollbar_bottom.place(relx=0, rely=1, relwidth=1, anchor='sw')
 border_bottom_image = Image.open('border_bottom.jpg')
 img_bottom= ImageTk.PhotoImage(border_bottom_image)
 
-bom_image = Image.open('bom.png')
-bom_resize = bom_image.resize((50,50))
+bom_image = Image.open('images/bom.png')
+bom_resize = bom_image.resize((70,70))
 img_bom =ImageTk.PhotoImage(bom_resize)
 
-bg1_image = Image.open('bg1.png')
+bom2_image = Image.open('bom2.png')
+img_bom2 =ImageTk.PhotoImage(bom2_image)
+
+bg1_image = Image.open('images/bg1.png')
 img_bg1 =ImageTk.PhotoImage(bg1_image)
 
 #group fish image
@@ -62,29 +65,57 @@ img_bg1 =ImageTk.PhotoImage(bg1_image)
 
 #grass image
 
-grass1_image = Image.open('grass1.gif')
-grass1_resize = grass1_image.resize((100,100))
+grass1_image = Image.open('images/grasses/grass1.gif')
+grass1_resize = grass1_image.resize((100,300))
 img_grass1 =ImageTk.PhotoImage(grass1_resize)
 
-# grass2_image = Image.open('grass2.gif')
-# grass2_resize = grass2_image.resize((100,100))
-# img_grass2 =ImageTk.PhotoImage(grass2_resize)
+grass2_image = Image.open('images/grasses/grass1.gif')
+grass2_resize = grass2_image.resize((100,300))
+img_grass2 =ImageTk.PhotoImage(grass2_resize)
 
-# grass3_image = Image.open('grass3.gif')
-# grass3_resize = grass3_image.resize((100,100))
-# img_grass3 =ImageTk.PhotoImage(grass3_resize)
+grass3_image = Image.open('images/grasses/grass1.gif')
+grass3_resize = grass3_image.resize((100,250))
+img_grass3 =ImageTk.PhotoImage(grass3_resize)
 
 # grass4_image = Image.open('grass4.png')
 # grass4_resize = grass4_image.resize((100,100))
 # img_grass4 =ImageTk.PhotoImage(grass4_resize)
 
+# grass4_image = Image.open('grass4.png')
+# grass4_resize = grass4_image.resize((100,100))
+# img_grass4 =ImageTk.PhotoImage(grass4_resize)
 
-#create canvas
+grass6_image = Image.open('images/grasses/grass6.gif')
+grass6_resize = grass6_image.resize((200,150))
+img_grass6 =ImageTk.PhotoImage(grass6_resize)
+
+grass7_image = Image.open('images/grasses/grass7.png')
+grass7_resize = grass7_image.resize((200,150))
+img_grass7 =ImageTk.PhotoImage(grass7_resize)
+
+#stones image
+stone1_image = Image.open('images/stones/stone1.png')
+stone1_resize = stone1_image.resize((80,70))
+img_stone1 =ImageTk.PhotoImage(stone1_resize)
+
+stone2_image = Image.open('images/stones/stone1.png')
+stone2_resize = stone2_image.resize((80,70))
+img_stone2 =ImageTk.PhotoImage(stone2_resize)
+
+#image flag
+flag_image = Image.open('images/flag.png')
+flag_resize = flag_image.resize((80,90))
+img_flag =ImageTk.PhotoImage(flag_resize)
+
+#create canvas image bg
 canvas.create_image(600,300, image =img_bg1)
 canvas.create_image(1800,300, image =img_bg1)
 canvas.create_image(3000,300, image =img_bg1)
 canvas.create_image(4000,300, image =img_bg1)
-#canvas image
+flag_id = canvas.create_image(3900, 670, image = img_flag)
+
+
+#canvas image border bottom
 canvas.create_image(0, 750, image = img_bottom, tags="PLATFORM")
 canvas.create_image(400, 750, image = img_bottom, tags="PLATFORM")
 canvas.create_image(800, 750, image = img_bottom, tags="PLATFORM")
@@ -99,9 +130,11 @@ canvas.create_image(3545, 750, image = img_bottom, tags="PLATFORM")
 canvas.create_image(4045, 750, image = img_bottom, tags="PLATFORM")
 
 
-# Create a falling object (bom)
+# Create a falling object (boms)
 bom_id = canvas.create_image(190, 200, image = img_bom)
-# Create a falling object (fish)
+bom2_id = canvas.create_image(500, 685, image = img_bom2)
+
+# Create a falling object (fishes)
 # fish1_id = canvas.create_image(190, 200, image = img_fish1)
 # fish2_id = canvas.create_image(300, 200, image = img_fish2)
 # fish3_id = canvas.create_image(300, 400, image = img_fish3)
@@ -110,14 +143,18 @@ bom_id = canvas.create_image(190, 200, image = img_bom)
 # fish6_id = canvas.create_image(600, 500, image = img_fish6)
 # fish7_id = canvas.create_image(50, 300, image = img_fish7)
 
-# # Create a falling object (grass)
-# grass1_id = canvas.create_image(700, 670, image = img_grass1)
-# grass2_id = canvas.create_image(300, 670, image = img_grass2)
-# grass3_id = canvas.create_image(900, 670, image = img_grass3)
+# # Create a falling object (grasses)
+grass1_id = canvas.create_image(1200, 565, image = img_grass1)
+grass2_id = canvas.create_image(2385,565, image = img_grass2)
+grass3_id = canvas.create_image(3400, 590, image = img_grass3)
 # grass4_id = canvas.create_image(100, 670, image = img_grass4)
+# grass4_id = canvas.create_image(100, 670, image = img_grass4)
+grass6_id = canvas.create_image(400, 650, image = img_grass6)
+grass6_id = canvas.create_image(1500, 700, image = img_grass7)
 
-
-#design background
+# # Create a falling object (stones)
+stone1_id = canvas.create_image(1000, 685, image = img_stone1)
+stone1_id = canvas.create_image(2000, 685, image = img_stone2)
 
 
 
@@ -133,14 +170,13 @@ def moveBom():
     rightPos = canvas.coords(bom_id)
     bottomPos = canvas.coords(bom_id)
 
-    if rightPos[0] > SCREEN_WIDTH-180 or leftPos[0] < 0:
+    if rightPos[0] > SCREEN_WIDTH or leftPos[0] < 0:
         xspeed = -xspeed
 
     if bottomPos[1] > SCREEN_HEIGHT-200 or topPos[1] < 0  :
         yspeed = -yspeed
     canvas.after(10, moveBom)
 canvas.after(10, moveBom)
-
 
 
 
