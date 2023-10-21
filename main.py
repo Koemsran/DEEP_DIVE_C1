@@ -6,6 +6,10 @@ window = tk.Tk()
 window.title('Juggle-Game')
 window.attributes('-fullscreen', True)
 
+#speed
+X_VELOCITY = 9
+Y_VELOCITY = 9
+
 SCREEN_WIDTH = 3000
 SCREEN_HEIGHT = 900
 
@@ -33,6 +37,27 @@ img_bom2 =ImageTk.PhotoImage(bom2_image)
 
 bg1_image = Image.open('images/bg1.png')
 img_bg1 =ImageTk.PhotoImage(bg1_image)
+
+#Create image bubble water
+bubble_image = Image.open('bubble.png')
+bubble = ImageTk.PhotoImage(bubble_image)
+
+bubble1_image = Image.open('bubble1.png')
+bubble1 = ImageTk.PhotoImage(bubble1_image)
+
+bubble2_image = Image.open('bubble2.png')
+bubble2 = ImageTk.PhotoImage(bubble2_image)
+
+bubble3_image = Image.open('bubble3.png')
+bubble3 = ImageTk.PhotoImage(bubble3_image)
+
+bubble4_image = Image.open('bubble4.png')
+bubble4 = ImageTk.PhotoImage(bubble4_image)
+
+bubble5_image = Image.open('bubble5.png')
+bubble5 = ImageTk.PhotoImage(bubble5_image) 
+
+
 
 #group fish image
 fish1_image = Image.open('images/fishes/fish1.gif')
@@ -129,6 +154,14 @@ canvas.create_image(3045, 750, image = img_bottom, tags="PLATFORM")
 canvas.create_image(3545, 750, image = img_bottom, tags="PLATFORM")
 canvas.create_image(4045, 750, image = img_bottom, tags="PLATFORM")
 
+# Create a falling object (bubble water)
+object_id = canvas.create_image(100, 700, image = bubble)
+object1_id = canvas.create_image(600, 700, image = bubble1)
+object2_id = canvas.create_image(350, 900, image = bubble2)
+object3_id = canvas.create_image(900, 700, image = bubble3)
+object4_id = canvas.create_image(1200, 750, image = bubble4)
+object5_id = canvas.create_image(350, 800, image = bubble5) 
+
 
 # Create a falling object (boms)
 bom_id = canvas.create_image(190, 200, image = img_bom)
@@ -179,4 +212,43 @@ def moveBom():
 canvas.after(10, moveBom)
 
 
+<<<<<<< HEAD
+=======
+# Function to update the object's position
+def update_position_down():
+    bubble_coods = canvas.coords(object_id)
+    bubble_coods = canvas.coords(object1_id)
+    bubble_coods = canvas.coords(object2_id)
+    bubble_coods = canvas.coords(object3_id)
+    bubble_coods = canvas.coords(object4_id)
+    bubble_coods = canvas.coords(object5_id)
+
+    if bubble_coods[1]< 0:
+        canvas.move(object_id, 0, 4)
+        canvas.move(object1_id, 0, 3.2)
+        canvas.move(object2_id, 0, 3.5)
+        canvas.move(object3_id, 0, 4.2)
+        canvas.move(object4_id, 0, 4)
+        canvas.move(object5_id, 0, 4)
+        window.after(50, update_position_down)
+    else:
+        update_position_up()
+def update_position_up():
+    bubble_coods = canvas.coords(object_id)
+    bubble_coods = canvas.coords(object1_id)
+    bubble_coods = canvas.coords(object2_id)
+    bubble_coods = canvas.coords(object3_id)
+    bubble_coods = canvas.coords(object4_id)
+    print(bubble_coods)
+    if bubble_coods[1]> -500 :
+        canvas.move(object_id, 0, -4)
+        canvas.move(object1_id, 0, -3.2)
+        canvas.move(object2_id, 0, -3.5)
+        canvas.move(object3_id, 0, -4.2)
+        canvas.move(object4_id, 0, -4)
+        canvas.move(object5_id, 0, -4)
+        window.after(30, update_position_up)
+window.after(30, update_position_up)
+
+>>>>>>> 59e8f030cc1378e797e012526e8c33dca820547b
 window.mainloop()
