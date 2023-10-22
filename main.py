@@ -15,6 +15,9 @@ frame.pack()
 canvas = tk.Canvas(frame, width=SCREEN_WIDTH, height=SCREEN_HEIGHT,  scrollregion= (0,0,4000,5000))
 canvas.pack()
 
+#.....score......
+score = 0
+
 #scrollbar
 scrollbar_bottom = tk.Scrollbar(window, orient='horizontal', command=canvas.xview)
 canvas.configure(xscrollcommand=scrollbar_bottom.set)
@@ -160,6 +163,19 @@ dimond1_image = Image.open('images/dimond/dimond.gif')
 dimond1_resize = dimond1_image.resize((50,60))
 img_dimond1 =ImageTk.PhotoImage(dimond1_resize)
 
+dimond2_image = Image.open('images/dimond/dimond2.gif')
+dimond2_resize = dimond2_image.resize((30,40))
+img_dimond2 =ImageTk.PhotoImage(dimond2_resize)
+
+#..........box.........
+
+box1_image = Image.open('images/box/box.png')
+box1_resize = box1_image.resize((60,60))
+img_box1 =ImageTk.PhotoImage(box1_resize)
+
+
+
+
 #grass image
 
 grass1_image = Image.open('images/grasses/grass1.gif')
@@ -196,9 +212,13 @@ stone1_image = Image.open('images/stones/stone1.png')
 stone1_resize = stone1_image.resize((80,70))
 img_stone1 =ImageTk.PhotoImage(stone1_resize)
 
-stone2_image = Image.open('images/stones/stone1.png')
+stone2_image = Image.open('images/stones/stone2.png')
 stone2_resize = stone2_image.resize((80,70))
 img_stone2 =ImageTk.PhotoImage(stone2_resize)
+
+stone3_image = Image.open('images/stones/stone3.png')
+stone3_resize = stone3_image.resize((80,70))
+img_stone3 =ImageTk.PhotoImage(stone3_resize)
 
 #image flag
 flag_image = Image.open('images/flag.png')
@@ -292,16 +312,49 @@ grass7_id = canvas.create_image(2600, 700, image = img_grass7)
 grass7_id = canvas.create_image(3600, 700, image = img_grass7)
 
 # # Create a falling object (stones)
-stone1_id = canvas.create_image(1000, 685, image = img_stone1)
-stone1_id = canvas.create_image(2000, 685, image = img_stone2)
-stone1_id = canvas.create_image(2900, 685, image = img_stone2)
-stone1_id = canvas.create_image(200, 685, image = img_stone2)
+stone3_id = canvas.create_image(1000, 685, image = img_stone3)
+stone2_id = canvas.create_image(2000, 685, image = img_stone2)
+stone3_id = canvas.create_image(2900, 685, image = img_stone3)
+stone1_id = canvas.create_image(200, 685, image = img_stone1)
 
 # # Create a falling object (dimond1)
 
 dimond1_id = canvas.create_image(700, 690, image = img_dimond1)
 dimond1_id = canvas.create_image(3000, 690, image = img_dimond1)
 dimond1_id = canvas.create_image(1900, 690, image = img_dimond1)
+
+# #.....Create a falling object (box)....
+
+box1_id = canvas.create_image(595, 690, image = img_box1)
+box1_id = canvas.create_image(650, 690, image = img_box1)
+box1_id = canvas.create_image(650, 635, image = img_box1)
+
+box1_id = canvas.create_image(1250, 690, image = img_box1)
+box1_id = canvas.create_image(1300, 690, image = img_box1)
+box1_id = canvas.create_image(1300, 635, image = img_box1)
+box1_id = canvas.create_image(1350, 690, image = img_box1)
+box1_id = canvas.create_image(1350, 635, image = img_box1)
+box1_id = canvas.create_image(1350, 580, image = img_box1)
+
+box1_id = canvas.create_image(2000, 690, image = img_box1)
+box1_id = canvas.create_image(2080, 630, image = img_box1)
+box1_id = canvas.create_image(2140, 630, image = img_box1)
+box1_id = canvas.create_image(2200, 630, image = img_box1)
+box1_id = canvas.create_image(2260, 630, image = img_box1)
+
+box1_id = canvas.create_image(2800, 690, image = img_box1)
+box1_id = canvas.create_image(3333, 690, image = img_box1)
+box1_id = canvas.create_image(3460, 690, image = img_box1)
+
+
+# ..................dimond​​ score.............
+
+score_id = canvas.create_text(340, 50, text=" : 0 ", font=("bold", 20), fill="white")
+dimond2_id = canvas.create_image(300, 50, image = img_dimond2)
+
+## .................Level...............
+
+score_id = canvas.create_text(150, 50, text="Level : 1 ", font=("bold", 20), fill="white")
 
 
 # Function to update the object's position
