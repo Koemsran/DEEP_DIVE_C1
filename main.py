@@ -154,6 +154,12 @@ fish7_image = Image.open('images/fishes/fish7.gif')
 fish7_resize = fish7_image.resize((100,100))
 img_fish7 =ImageTk.PhotoImage(fish7_resize)
 
+#group dimond image
+
+dimond1_image = Image.open('images/dimond/dimond.gif')
+dimond1_resize = dimond1_image.resize((50,60))
+img_dimond1 =ImageTk.PhotoImage(dimond1_resize)
+
 #grass image
 
 grass1_image = Image.open('images/grasses/grass1.gif')
@@ -168,9 +174,10 @@ grass3_image = Image.open('images/grasses/grass1.gif')
 grass3_resize = grass3_image.resize((100,250))
 img_grass3 =ImageTk.PhotoImage(grass3_resize)
 
-# grass4_image = Image.open('grass4.png')
-# grass4_resize = grass4_image.resize((100,100))
-# img_grass4 =ImageTk.PhotoImage(grass4_resize)
+
+grass4_image = Image.open('images/grasses/grass4.png')
+grass4_resize = grass4_image.resize((100,100))
+img_grass4 =ImageTk.PhotoImage(grass4_resize)
 
 # grass4_image = Image.open('grass4.png')
 # grass4_resize = grass4_image.resize((100,100))
@@ -258,7 +265,6 @@ object4 = canvas.create_image(900, 1000, image = bubble3, tags='BUBBLE1')
 object5 = canvas.create_image(1200, 1000, image = bubble4, tags='BUBBLE1')
 object6 = canvas.create_image(350, 900, image = bubble5, tags='BUBBLE1') 
 
-
 # Create a falling object (boms)
 bom_id = canvas.create_image(190, 200, image = img_bom)
 bom2_id = canvas.create_image(500, 685, image = img_bom2)
@@ -276,15 +282,26 @@ fish7_id = canvas.create_image(50, 300, image = img_fish7)
 grass1_id = canvas.create_image(1200, 565, image = img_grass1)
 grass2_id = canvas.create_image(2385,565, image = img_grass2)
 grass3_id = canvas.create_image(3400, 590, image = img_grass3)
-# grass4_id = canvas.create_image(100, 670, image = img_grass4)
+# grass4_id = canvas.create_image(700, 600, image = img_grass4)
 # grass4_id = canvas.create_image(100, 670, image = img_grass4)
 grass6_id = canvas.create_image(400, 650, image = img_grass6)
-grass6_id = canvas.create_image(1500, 700, image = img_grass7)
+grass6_id = canvas.create_image(1800, 650, image = img_grass6)
+grass6_id = canvas.create_image(3200, 650, image = img_grass6)
+grass7_id = canvas.create_image(1500, 700, image = img_grass7)
+grass7_id = canvas.create_image(2600, 700, image = img_grass7)
+grass7_id = canvas.create_image(3600, 700, image = img_grass7)
 
 # # Create a falling object (stones)
 stone1_id = canvas.create_image(1000, 685, image = img_stone1)
 stone1_id = canvas.create_image(2000, 685, image = img_stone2)
+stone1_id = canvas.create_image(2900, 685, image = img_stone2)
+stone1_id = canvas.create_image(200, 685, image = img_stone2)
 
+# # Create a falling object (dimond1)
+
+dimond1_id = canvas.create_image(700, 690, image = img_dimond1)
+dimond1_id = canvas.create_image(3000, 690, image = img_dimond1)
+dimond1_id = canvas.create_image(1900, 690, image = img_dimond1)
 
 
 # Function to update the object's position
