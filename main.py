@@ -9,6 +9,15 @@ window.attributes('-fullscreen', True)
 SCREEN_WIDTH = 3000
 SCREEN_HEIGHT = 900
 
+GRAVITY_FORCE = 9
+JUMP_FORCE = 100
+SPEED = 7
+
+TIME_LOOP = 10
+
+# ------------- Variables ---------------------
+keyPressed = []
+
 frame = tk.Frame(window, width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
 frame.pack()
 
@@ -220,6 +229,7 @@ canvas.create_image(3045, 750, image = img_bottom, tags="PLATFORM")
 canvas.create_image(3545, 750, image = img_bottom, tags="PLATFORM")
 canvas.create_image(4045, 750, image = img_bottom, tags="PLATFORM")
 
+
 # Create a falling object (bubble water)
 object_id = canvas.create_image(100, 700, image = bubble, tags='BUBBLE')
 object1_id = canvas.create_image(600, 700, image = bubble1, tags='BUBBLE')
@@ -366,40 +376,153 @@ X_VELOCITY = 9
 Y_VELOCITY = 9
 
 
-
-player_img = Image.open('images/players/player_right.png')
+player_img = Image.open('images/players/player_down.png')
 player_id = ImageTk.PhotoImage(player_img)
 
 player_img2 =Image.open('images/players/player_left.png')
 player_id2 = ImageTk.PhotoImage(player_img2)
 
-player_img3 =Image.open('images/players/player_down.png')
+player_img3 =Image.open('images/players/player1.png')
 player_id3 = ImageTk.PhotoImage(player_img3)
 
+player_img4 =Image.open('images/players/player2.png')
+player_id4 = ImageTk.PhotoImage(player_img4)
 
 #it similar pading
-player = canvas.create_image(50, 50, image=player_id, )
+player = canvas.create_image(150, 150, image=player_id )
+#function to update the object's position
+def update_position():
+    coord = canvas.coords(player)
+    border_coord = canvas.coords(' PLATFORM')
+    if coord[1] + player_id.height() <= 920:
+        canvas.move(player, 0, 9)
+    window.after(50, update_position)
+
+#Start the simulation  
+update_position()
 
 
-def move(x_velocity,y_velocity):
-    canvas.move(player, x_velocity, y_velocity)
+# #Gravity
+# #-------------Function----------------
+
+# #Check if the player can move by projecting the movement with dx and dy
+# #If checkground is True, check if the player is on the ground by projecting the movement with the last coordinate
+# #Instead of getting the platform list with canvas. Find_withtag("PLATFORM"), we could have used a global list
+# #Return True if the player can move (i.e is not near any wall), False otherwise
+def check_movement(dx=0, dy=0, checkGround=False):
+    coord = canvas.coords(player)
+    platforms = canvas.find_withtag("PLATFORM")
+
+    if coord[0] + dx < 0 or coord[0] + player_id.width() > SCREEN_WIDTH:
+        return False
+    
+    if checkGround:
+        overlap = canvas.find_overlapping(coord[0], coord[1], coord[0], coord[1]+ player_id.height())
+    else:
+        overlap = canvas.find_overlapping(coord[0] +dx, coord[1]+dy, coord[0]+player_id.width(), coord[1]+player_id.height())
+    # print(overlap)
+    for platform in platforms:
+        if platform in overlap:
+            return False
+    return True
+
+# #Jump by moving the player up by player
+# #Only if the player can move up
+# #The force paremeter is always decreasing by 1 until it reach 0
+# #The force should be higher than the gravity force to be able
+
+def jump(force):
+    if force > 0:
+        if not check_movement(0, -force):
+            canvas.move(player, 0, -force)
+            window.after(TIME_LOOP, jump, force-1)
+
+# #The start_move function is called when a key is pressed
+# #It adds the key to the keypressed lish if it's not already in it
+# #If the keypressed lish was empty, it calls move function
+def start_move(event):
+    print(event.keysym)
+    if event.keysym not in keyPressed:
+        keyPressed.append(event.keysym)
+        if len(keyPressed) == 1:
+            move()
+
+# #The move function is called every TIME_LOOP milliseconds
+# #It checks if the player can move in the direction of the keyPressed lish
+# #It also check if the player is on the ground before jumping
 
 
-def check_direction(event):
-    if event.keysym == "Left":
-        canvas.itemconfig(player, image=player_id2)
-        move(-X_VELOCITY,0)
-    elif event.keysym == "Right":
-        canvas.itemconfig(player, image=player_id)
-        move(X_VELOCITY,0)
-    elif event.keysym == "Up":
-        canvas.itemconfig(player, image=player_id)
-        move(0,-Y_VELOCITY)
-    elif event.keysym == "Down":
-        canvas.itemconfig(player, image=player_id3)
-        move(0,Y_VELOCITY)
+def move():
+    if not keyPressed ==[]:
+        x = 0
+        if "Left" in keyPressed:
+            x -= SPEED
+            canvas.itemconfig(player, image=player_id4)
+        elif "Right" in keyPressed:
+            x += SPEED
+            canvas.itemconfig(player, image=player_id3)
+        elif "space" in keyPressed and not check_movement(0, GRAVITY_FORCE, True):
+            jump(JUMP_FORCE)
+        if not check_movement(x):
+            canvas.move(player, x, 0)
+        window.after(TIME_LOOP, move)
 
-window.bind("<Key>", check_direction)
+# #The gravity function is called every TIME_LOOP milliseconds
+# #It checks if the player can move down by GRAVITY_FORCE 
+# #It is always looping, even if the player can't move down
+def gravity():
+    if check_movement(0, GRAVITY_FORCE, True):
+        canvas.move(player, 0, GRAVITY_FORCE)
+    window.after(TIME_LOOP, gravity)
 
+gravity()
+
+# #The stop _move function is called when a key is released
+# #It removes the key from the keyPress lish
+def stop_move(event):
+    global keyPressed
+    if event.keysym in keyPressed:
+        keyPressed.remove(event.keysym)
+
+
+
+# #Moveable player when touch border(down)
+# def is_moveable():
+#     coord = canvas.coords(player)
+#     players = canvas.find_withtag("PLATFORM")
+#     print(players)
+#     overlap = canvas.find_overlapping(coord[0], coord[1], coord[0] + player_id .width(), coord[1] + player_id .height())
+#     print(overlap)
+#     for play in players:
+#         if play in overlap:
+#             return 1
+#     return 0
+
+# shape = is_moveable()
+# print(shape)
+
+
+# def move(x_velocity,y_velocity):
+#     canvas.move(player, x_velocity, y_velocity)
+
+
+# def check_direction(event):
+#     if event.keysym == "Left":
+#         canvas.itemconfig(player, image=player_id4)
+#         move(-X_VELOCITY,0)
+#     elif event.keysym == "Right":
+#         canvas.itemconfig(player, image=player_id3)
+#         move(X_VELOCITY,0)
+#     elif event.keysym == "Up":
+#         canvas.itemconfig(player, image=player_id3)
+#         move(0,-Y_VELOCITY)
+#     elif event.keysym == "Down":
+#         canvas.itemconfig(player, image=player_id)
+#         move(0,Y_VELOCITY)
+
+# window.bind("<Key>", check_direction)
+
+window.bind("<Key>", start_move)
+window.bind("<KeyRelease>", stop_move)
 
 window.mainloop()
