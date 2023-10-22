@@ -425,12 +425,8 @@ window.after(30, update_position_up)
 X_VELOCITY = 9
 Y_VELOCITY = 9
 
-<<<<<<< HEAD
 
 player_img = Image.open('images/players/player_down.png')
-=======
-player_img = Image.open('images/players/player_right.png')
->>>>>>> 5607179338a365544fbc7e70f35ae792e76d2564
 player_id = ImageTk.PhotoImage(player_img)
 
 player_img2 =Image.open('images/players/player_left.png')
