@@ -17,15 +17,8 @@ frame.pack()
 canvas = tk.Canvas(frame, width=SCREEN_WIDTH, height=SCREEN_HEIGHT,  scrollregion= (0,0,4000,5000))
 canvas.pack()
 
-<<<<<<< HEAD
-#start_game window
-
-
-
-=======
 #.....score......
 score = 0
->>>>>>> e35723e73e69d69b66e7780de6780d74f6665080
 
 #scrollbar
 scrollbar_bottom = tk.Scrollbar(window, orient='horizontal', command=canvas.xview)
@@ -335,10 +328,6 @@ stone2_id = canvas.create_image(2000, 685, image = img_stone2)
 stone3_id = canvas.create_image(2900, 685, image = img_stone3)
 stone1_id = canvas.create_image(200, 685, image = img_stone1)
 
-<<<<<<< HEAD
-#create enemy image
-
-=======
 # # Create a falling object (dimond1)
 
 dimond1_id = canvas.create_image(700, 690, image = img_dimond1)
@@ -377,7 +366,6 @@ dimond2_id = canvas.create_image(300, 50, image = img_dimond2)
 ## .................Level...............
 
 score_id = canvas.create_text(150, 50, text="Level : 1 ", font=("bold", 20), fill="white")
->>>>>>> e35723e73e69d69b66e7780de6780d74f6665080
 
 
 # Function to update the object's position
