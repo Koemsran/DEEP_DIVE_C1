@@ -126,15 +126,56 @@ box1_resize = box1_image.resize((60,60))
 img_box1 =ImageTk.PhotoImage(box1_resize)
 
 #...........shark..............
+
 shark1_image = Image.open('images/fishes/fish Shark/shark1.png')
-shark1_resize = shark1_image.resize((250,100))
+shark1_resize = shark1_image.resize((250,80))
 img_shark1 =ImageTk.PhotoImage(shark1_resize)
 
 shark2_image = Image.open('images/fishes/fish Shark/shark 2.png')
-shark2_resize = shark2_image.resize((250,100))
+shark2_resize = shark2_image.resize((250,120))
 img_shark2 =ImageTk.PhotoImage(shark2_resize)
 
+shark3_image = Image.open('images/fishes/fish Shark/shark 3.png')
+shark3_resize = shark3_image.resize((250,120))
+img_shark3 =ImageTk.PhotoImage(shark3_resize)
 
+#.........fishes small............
+
+fish1_image = Image.open('images/fishes/fish.png')
+fish1_resize = fish1_image.resize((250,120))
+img_fish1 =ImageTk.PhotoImage(fish1_resize)
+
+fish2_image = Image.open('images/fishes/fish1.gif')
+fish2_resize = fish2_image.resize((100,50))
+img_fish2 =ImageTk.PhotoImage(fish2_resize)
+
+# fish3_image = Image.open('images/fishes/fish2.gif')
+# fish3_resize = fish3_image.resize((200,150))
+# img_fish3 =ImageTk.PhotoImage(fish3_resize)
+
+fish4_image = Image.open('images/fishes/fish3.gif')
+fish4_resize = fish4_image.resize((150,100))
+img_fish4 =ImageTk.PhotoImage(fish4_resize)
+
+fish5_image = Image.open('images/fishes/fish4.gif')
+fish5_resize = fish5_image.resize((150,80))
+img_fish5 =ImageTk.PhotoImage(fish5_resize)
+
+fish6_image = Image.open('images/fishes/fish5.gif')
+fish6_resize = fish6_image.resize((130,80))
+img_fish6 =ImageTk.PhotoImage(fish6_resize)
+
+fish7_image = Image.open('images/fishes/fish6.gif')
+fish7_resize = fish7_image.resize((150,80))
+img_fish7 =ImageTk.PhotoImage(fish7_resize)
+
+fish8_image = Image.open('images/fishes/fish7.gif')
+fish8_resize = fish8_image.resize((200,150))
+img_fish8 =ImageTk.PhotoImage(fish8_resize)
+
+fish9_image = Image.open('images/fishes/fish8.png')
+fish9_resize = fish9_image.resize((200,150))
+img_fish9 =ImageTk.PhotoImage(fish9_resize)
 
 
 #grass image
@@ -234,9 +275,24 @@ dimond1_id = canvas.create_image(700, 690, image = img_dimond1)
 dimond1_id = canvas.create_image(3000, 690, image = img_dimond1)
 dimond1_id = canvas.create_image(1900, 690, image = img_dimond1)
 
+# # Create a falling object (fishes)
+
+fish2_id = canvas.create_image(100, 200, image = img_fish2)
+# fish3_id = canvas.create_image(400, 300, image = img_fish3)
+fish4_id = canvas.create_image(250, 500, image = img_fish4)
+fish4_id = canvas.create_image(1200, 100, image = img_fish4)
+fish5_id = canvas.create_image(900, 690, image = img_fish5)
+fish6_id = canvas.create_image(1200, 400, image = img_fish6)
+fish6_id = canvas.create_image(700, 200, image = img_fish6)
+fish7_id = canvas.create_image(800, 300, image = img_fish7)
+fish8_id = canvas.create_image(700, 500, image = img_fish8)
+fish9_id = canvas.create_image(300, 300, image = img_fish9)
+
+
 # # Create a falling object (shark)
-shark1_id = canvas.create_image(2000, 500, image = img_shark1)
-shark2_id = canvas.create_image(3000, 500, image = img_shark2)
+shark1_id = canvas.create_image(1000, 500, image = img_shark1)
+shark2_id = canvas.create_image(2500, 500, image = img_shark2)
+shark3_id = canvas.create_image(3500, 500, image = img_shark3)
 
 # #.....Create a falling object (box)....
 
