@@ -4,6 +4,10 @@ from PIL import Image, ImageTk
 import winsound
 from random import randrange
 from random import randint, choice
+import pygame
+import threading 
+
+
 
 # Create the Tkinter window
 window = tk.Tk()
@@ -17,10 +21,9 @@ GRAVITY_FORCE = 9
 JUMP_FORCE = 100
 SPEED = 7
 
-TIME_LOOP = 10
+TIMED_LOOP = 10
 
 # ------------- Variables ---------------------
-keyPressed = []
 
 frame = tk.Frame(window, width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
 frame.pack()
@@ -90,21 +93,20 @@ window.after(30, update_position_up)
 
 #group fish image
 
-# image_fish_list = []
-# for i in range(1,8):
-#     fish_image = Image.open('images/fishes/fish'+str(i)+'.gif')
-#     fish_resize = fish_image.resize((100,100))
-#     img_fish =ImageTk.PhotoImage(fish_resize)
-#     image_fish_list.append(img_fish)
+image_fish_list = []
+for i in range(1,8):
+    fish_image = Image.open('images/fishes/fish'+str(i)+'.gif')
+    fish_resize = fish_image.resize((100,100))
+    img_fish =ImageTk.PhotoImage(fish_resize)
+    image_fish_list.append(img_fish)
     
-# # Iterate over the list of PhotoImage objects and create a create_image() item for each image.
-# x=10
-# y=10
-# for fish in image_fish_list:
-#     canvas.create_image(x, y, image=fish, tag="FISH")
-#     print(x)
-#     x+=300
-#     y+=200
+# Iterate over the list of PhotoImage objects and create a create_image() item for each image.
+x=10
+y=10
+for fish in image_fish_list:
+    canvas.create_image(x, y, image=fish, tag="FISH")
+    x+=300
+    y+=200
 
 
 #group dimond image
@@ -192,11 +194,12 @@ y=750
 for img in image_list:
     canvas.create_image(x, y, image=img, tag="PLATFORM")
     x+=400
-    
+
+
 
 # Create a falling object (boms)
-bom_id = canvas.create_image(190, 200, image = img_bom)
-bom2_id = canvas.create_image(500, 685, image = img_bom2)
+bom_id = canvas.create_image(190, 200, image = img_bom, tags= 'BOM')
+bom2_id = canvas.create_image(500, 685, image = img_bom2, tags = 'BOM')
 
 
 # # Create a falling object (grasses)
@@ -211,10 +214,10 @@ grass7_id = canvas.create_image(2600, 700, image = img_grass7)
 grass7_id = canvas.create_image(3600, 700, image = img_grass7)
 
 # # Create a falling object (stones)
-stone3_id = canvas.create_image(1000, 685, image = img_stone3)
-stone2_id = canvas.create_image(2000, 685, image = img_stone2)
-stone3_id = canvas.create_image(2900, 685, image = img_stone3)
-stone1_id = canvas.create_image(200, 685, image = img_stone1)
+stone3_id = canvas.create_image(1000, 685, image = img_stone3, tags= 'STONE')
+stone2_id = canvas.create_image(2000, 685, image = img_stone2, tags= 'STONE')
+stone3_id = canvas.create_image(2900, 685, image = img_stone3, tags= 'STONE')
+stone1_id = canvas.create_image(200, 685, image = img_stone1, tags= 'STONE')
 
 # # Create a falling object (dimond1)
 
@@ -284,172 +287,103 @@ X_VELOCITY = 9
 Y_VELOCITY = 9
 
 
-player_img = Image.open('images/players/player_down.png')
-player_id = ImageTk.PhotoImage(player_img)
+# player_img = Image.open('images/players/player_down.png')
+# player_id = ImageTk.PhotoImage(player_img)
+# player = canvas.create_image(150, 700, image=player_id )
 
-player_img2 =Image.open('images/players/player_left.png')
-player_id2 = ImageTk.PhotoImage(player_img2)
+# player_img2 =Image.open('images/players/player_left.png')
+# player_id2 = ImageTk.PhotoImage(player_img2)
 
-player_img3 =Image.open('images/players/player1.png')
-player_id3 = ImageTk.PhotoImage(player_img3)
+player1_img=Image.open('images/players/player1.png')
+player1_id = ImageTk.PhotoImage(player1_img)
+player1 = canvas.create_image(150, 653, image=player1_id )
 
-player_img4 =Image.open('images/players/player2.png')
-player_id4 = ImageTk.PhotoImage(player_img4)
+player2_img =Image.open('images/players/player2.png')
+player2_id = ImageTk.PhotoImage(player2_img)
 
-#it similar pading
-player = canvas.create_image(150, 150, image=player_id )
-#function to update the object's position
-def update_position():
-    coord = canvas.coords(player)
-    border_coord = canvas.coords('PLATFORM')
-    if coord[1]  <= border_coord[1]-90:
-        canvas.move(player, 0, 9)
-    else:
-        canvas.delete(player)
-        new_player = canvas.create_image(150, 660, image=player_id3 )
+#touch
+def move_player1():
+    coords= canvas.coords(player1)
+    players1=canvas.find_withtag('STONE')
+    overlap1= canvas.find_overlapping(coords[0], coords[1], coords[0]+player1_id.width(), coords[1]+player1_id.height())
+    for py1 in players1:
+        if py1 in overlap1:
+            return py1
+    return 0
 
-        
-    window.after(50, update_position)
-
-#Start the simulation  
-update_position()
-
-    
-
-# #Gravity
-# #-------------Function----------------
-
-# #Check if the player can move by projecting the movement with dx and dy
-# #If checkground is True, check if the player is on the ground by projecting the movement with the last coordinate
-# #Instead of getting the platform list with canvas. Find_withtag("PLATFORM"), we could have used a global list
-# #Return True if the player can move (i.e is not near any wall), False otherwise
-def check_movement(dx=0, dy=0, checkGround=False):
-    coord = canvas.coords(player)
-    platforms = canvas.find_withtag("PLATFORM")
-
-    if coord[0] + dx < 0 or coord[0] + player_id.width() > SCREEN_WIDTH:
-        return False
-    
-    if checkGround:
-        overlap = canvas.find_overlapping(coord[0], coord[1], coord[0], coord[1]+ player_id.height())
-    else:
-        overlap = canvas.find_overlapping(coord[0] +dx, coord[1]+dy, coord[0]+player_id.width(), coord[1]+player_id.height())
-    # print(overlap)
-    for platform in platforms:
-        if platform in overlap:
-            return False
-    return True
-
-# #Jump by moving the player up by player
-# #Only if the player can move up
-# #The force paremeter is always decreasing by 1 until it reach 0
-# #The force should be higher than the gravity force to be able
-
-def jump(force):
-    if force > 0:
-        if not check_movement(0, -force):
-            canvas.move(player, 0, -force)
-            window.after(TIME_LOOP, jump, force-1)
-
-# #The start_move function is called when a key is pressed
-# #It adds the key to the keypressed lish if it's not already in it
-# #If the keypressed lish was empty, it calls move function
-def start_move(event):
-    if event.keysym not in keyPressed:
-        keyPressed.append(event.keysym)
-        if len(keyPressed) == 1:
-            move()
-
-# #The move function is called every TIME_LOOP milliseconds
-# #It checks if the player can move in the direction of the keyPressed lish
-# #It also check if the player is on the ground before jumping
-
-
-def move():
-    if not keyPressed ==[]:
-        x = 0
-        if "Left" in keyPressed:
-            x -= SPEED
-            canvas.itemconfig(player, image=player_id4)
-        elif "Right" in keyPressed:
-            x += SPEED
-            canvas.itemconfig(player, image=player_id3)
-        elif "space" in keyPressed and not check_movement(0, GRAVITY_FORCE, True):
-            jump(JUMP_FORCE)
-        if not check_movement(x):
-            canvas.move(player, x, 0)
-        window.after(TIME_LOOP, move)
-
-# #The gravity function is called every TIME_LOOP milliseconds
-# #It checks if the player can move down by GRAVITY_FORCE 
-# #It is always looping, even if the player can't move down
-def gravity():
-    if check_movement(0, GRAVITY_FORCE, True):
-        canvas.move(player, 0, GRAVITY_FORCE)
-    window.after(TIME_LOOP, gravity)
-
-gravity()
-
-# #The stop _move function is called when a key is released
-# #It removes the key from the keyPress lish
-def stop_move(event):
-    global keyPressed
-    if event.keysym in keyPressed:
-        keyPressed.remove(event.keysym)
-
-
-
-# #Moveable player when touch border(down)
-# def is_moveable():
-#     coord = canvas.coords(player)
-#     players = canvas.find_withtag("PLATFORM")
-#     print(players)
-#     overlap = canvas.find_overlapping(coord[0], coord[1], coord[0] + player_id .width(), coord[1] + player_id .height())
-#     print(overlap)
-#     for play in players:
-#         if play in overlap:
-#             return 1
+# def move_player2():
+#     coord= canvas.coords(actor_id)
+#     players2=canvas.find_withtag('player2')
+#     overlap2= canvas.find_overlapping(coord[0], coord[1], coord[0]+player_id.width(), coord[1]+player_id.height())
+#     for player2 in players2:
+#         if player2 in overlap2:
+#             return player2
 #     return 0
 
-# shape = is_moveable()
-# print(shape)
+def game_lose():
+    index =canvas.coords(player1)
+    boms=canvas.find_withtag('BOM')
+    over=canvas.find_overlapping(index[0], index[1], index[0]+img_bom.width(), index[1]+img_bom.height())
+    for bom in boms:
+        if bom in over:
+            return True
+    return False
+
+# Window lose imge
+game =Image.open('images/bg1.png')
+lose = ImageTk.PhotoImage(game)
+game_over =Image.open('images/game_over.png')
+over = ImageTk.PhotoImage(game_over)
+
+died =Image.open('images/died.png')
+resize =died.resize((120,100))
+player_died = ImageTk.PhotoImage(resize)
+
+#Window lose
+def lose_window():
+    canvas.create_image(700,400, image=over, tags= 'LOSE')
+    canvas.itemconfigure(player1, image =player_died)
 
 
-# def move(x_velocity,y_velocity):
-#     canvas.move(player, x_velocity, y_velocity)
 
+def is_border_left():
+        return canvas.coords(player1)[0] < 30
 
-# def check_direction(event):
-#     if event.keysym == "Left":
-#         canvas.itemconfig(player, image=player_id4)
-#         move(-X_VELOCITY,0)
-#     elif event.keysym == "Right":
-#         canvas.itemconfig(player, image=player_id3)
-#         move(X_VELOCITY,0)
-#     elif event.keysym == "Up":
-#         canvas.itemconfig(player, image=player_id3)
-#         move(0,-Y_VELOCITY)
-#     elif event.keysym == "Down":
-#         canvas.itemconfig(player, image=player_id)
-#         move(0,Y_VELOCITY)
+def is_border_right():
+        return canvas.coords(player1)[0] > 4000
 
-# window.bind("<Key>", check_direction)
+def is_border_top():
+        return canvas.coords(player1)[1] < 30
+
+def is_border_bottom():
+        return canvas.coords(player1)[1] > 370
+
+def move_shape(event):
+    if event.keysym == "Left" and not is_border_left():
+        canvas.move(player1, -10, 0)
+        canvas.itemconfigure(player1, image = player2_id)
+    elif event.keysym == "Right" and not is_border_right():
+        canvas.move(player1, 10, 0)
+        canvas.itemconfigure(player1, image = player1_id)
+    elif event.keysym == "Up" and not is_border_top():
+        canvas.move(player1, 0, -10)
+    elif event.keysym == "Down" and not is_border_bottom():
+        canvas.move(player1, 0, 10)
+
+    if  game_lose():
+        lose_window()
+
+#Gravity
 
 #No auto scroll
 def scroll_right(event):
     canvas.xview('scroll', 1, 'units')
+    move_shape(event)
 
 def scroll_left(event):
     canvas.xview('scroll', -1, 'units')
 
-
-window.bind("<Right>", scroll_right)
-window.bind("<Left>", scroll_left)
-window.bind("<Key>", start_move)
-window.bind("<KeyRelease>", stop_move)
-
-
-
-
+window.bind("<Key>", move_shape)
+# window.bind("<Right>", scroll_right)
 
 window.mainloop()
