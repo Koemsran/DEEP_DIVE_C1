@@ -50,22 +50,21 @@ img_bom2 =ImageTk.PhotoImage(bom2_image)
 
 bg1_image = Image.open('images/bg1.png')
 img_bg1 =ImageTk.PhotoImage(bg1_image)
+    
 
-#Create image bubble water
-
-image_bubble_list = []
-for i in range(50):
-    bubble1_image = Image.open('images/bubbles/bubble1.png')
-    bubble1 = ImageTk.PhotoImage(bubble1_image)
-    image_bubble_list.append(bubble1)
+# image_bubble_list = []
+# for i in range(50):
+#     bubble1_image = Image.open('images/bubbles/bubble1.png')
+#     bubble1 = ImageTk.PhotoImage(bubble1_image)
+#     image_bubble_list.append(bubble1)
     
 # Iterate over the list of PhotoImage objects and create a create_image() item for each image.
-x=0
-y=0
-for image in image_bubble_list:
-    canvas.create_image(x, y, image=image, tag="BUBBLE")
-    x+=100
-    y+=100
+# x=0
+# y=0
+# for image in image_bubble_list:
+#     canvas.create_image(x, y, image=image, tag="BUBBLE")
+#     x+=100
+#     y+=100
     
 # Function to update the object's position
 def update_position_down():
@@ -91,22 +90,22 @@ window.after(30, update_position_up)
 
 
 
-#group fish image
+# group fish image
 
-image_fish_list = []
-for i in range(1,8):
-    fish_image = Image.open('images/fishes/fish'+str(i)+'.gif')
-    fish_resize = fish_image.resize((100,100))
-    img_fish =ImageTk.PhotoImage(fish_resize)
-    image_fish_list.append(img_fish)
+# image_fish_list = []
+# for i in range(1,8):
+#     fish_image = Image.open('images/fishes/fish'+str(i)+'.gif')
+#     fish_resize = fish_image.resize((100,100))
+#     img_fish =ImageTk.PhotoImage(fish_resize)
+#     image_fish_list.append(img_fish)
     
-# Iterate over the list of PhotoImage objects and create a create_image() item for each image.
-x=10
-y=10
-for fish in image_fish_list:
-    canvas.create_image(x, y, image=fish, tag="FISH")
-    x+=300
-    y+=200
+# # Iterate over the list of PhotoImage objects and create a create_image() item for each image.
+# x=10
+# y=10
+# for fish in image_fish_list:
+#     canvas.create_image(x, y, image=fish, tag="FISH")
+#     x+=300
+#     y+=200
 
 
 #group dimond image
@@ -201,6 +200,7 @@ for img in image_list:
 bom_id = canvas.create_image(190, 200, image = img_bom, tags= 'BOM')
 bom2_id = canvas.create_image(500, 685, image = img_bom2, tags = 'BOM')
 
+#Create a falling object (Fish)
 
 # # Create a falling object (grasses)
 grass1_id = canvas.create_image(1200, 565, image = img_grass1)
@@ -278,6 +278,8 @@ def moveBom():
         yspeed = -yspeed
     canvas.after(10, moveBom)
 canvas.after(10, moveBom)
+
+
 
 
 
