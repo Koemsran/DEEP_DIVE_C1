@@ -279,7 +279,21 @@ def moveBom():
     canvas.after(10, moveBom)
 canvas.after(10, moveBom)
 
+#...................music............................
 
+pygame.mixer.init()
+
+sound = pygame.mixer.Sound('images/numsic/song1.mp3')
+def play_sound():
+    while True:
+        sound.play()
+        pygame.time.wait(int(sound.get_length() * 1000))
+
+# Create a thread for playing the sound
+sound_thread = threading.Thread(target=play_sound)
+
+# Start the sound thread
+sound_thread.start()
 
 
 #create player
