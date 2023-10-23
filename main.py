@@ -125,6 +125,15 @@ box1_image = Image.open('images/box/box.png')
 box1_resize = box1_image.resize((60,60))
 img_box1 =ImageTk.PhotoImage(box1_resize)
 
+#...........shark..............
+shark1_image = Image.open('images/fishes/fish Shark/shark1.png')
+shark1_resize = shark1_image.resize((250,100))
+img_shark1 =ImageTk.PhotoImage(shark1_resize)
+
+shark2_image = Image.open('images/fishes/fish Shark/shark 2.png')
+shark2_resize = shark2_image.resize((250,100))
+img_shark2 =ImageTk.PhotoImage(shark2_resize)
+
 
 
 
@@ -224,6 +233,10 @@ stone1_id = canvas.create_image(200, 685, image = img_stone1, tags= 'STONE')
 dimond1_id = canvas.create_image(700, 690, image = img_dimond1)
 dimond1_id = canvas.create_image(3000, 690, image = img_dimond1)
 dimond1_id = canvas.create_image(1900, 690, image = img_dimond1)
+
+# # Create a falling object (shark)
+shark1_id = canvas.create_image(2000, 500, image = img_shark1)
+shark2_id = canvas.create_image(3000, 500, image = img_shark2)
 
 # #.....Create a falling object (box)....
 
