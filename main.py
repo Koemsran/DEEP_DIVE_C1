@@ -356,7 +356,7 @@ def is_border_top():
         return canvas.coords(player1)[1] < 30
 
 def is_border_bottom():
-        return canvas.coords(player1)[1] > 370
+        return canvas.coords(player1)[1] > 653
 
 def move_shape(event):
     if event.keysym == "Left" and not is_border_left():
