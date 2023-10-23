@@ -12,10 +12,10 @@ SCREEN_WIDTH = 3000
 SCREEN_HEIGHT = 900
 
 GRAVITY_FORCE = 9
-JUMP_FORCE = 100
-SPEED = 7
+JUMP_FORCE = 300
+SPEED = 6
 
-TIME_LOOP = 10
+TIME_LOOP = 20
 
 # ------------- Variables ---------------------
 keyPressed = []
@@ -425,12 +425,8 @@ window.after(30, update_position_up)
 X_VELOCITY = 9
 Y_VELOCITY = 9
 
-<<<<<<< HEAD
 
 player_img = Image.open('images/players/player_down.png')
-=======
-player_img = Image.open('images/players/player_right.png')
->>>>>>> 5607179338a365544fbc7e70f35ae792e76d2564
 player_id = ImageTk.PhotoImage(player_img)
 
 player_img2 =Image.open('images/players/player_left.png')
