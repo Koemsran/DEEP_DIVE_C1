@@ -178,7 +178,7 @@ canvas.create_image(600,300, image =img_bg1)
 canvas.create_image(1800,300, image =img_bg1)
 canvas.create_image(3000,300, image =img_bg1)
 canvas.create_image(4000,300, image =img_bg1)
-flag_id = canvas.create_image(3900, 670, image = img_flag)
+flag_id = canvas.create_image(3900, 670, image = img_flag, tags= 'FLAG')
 
 
 #canvas image border bottom
@@ -221,9 +221,9 @@ stone1_id = canvas.create_image(200, 685, image = img_stone1, tags= 'STONE')
 
 # # Create a falling object (dimond1)
 
-dimond1_id = canvas.create_image(700, 690, image = img_dimond1)
-dimond1_id = canvas.create_image(3000, 690, image = img_dimond1)
-dimond1_id = canvas.create_image(1900, 690, image = img_dimond1)
+dimond1_id = canvas.create_image(700, 690, image = img_dimond1, tags= 'DIAMOND')
+dimond1_id = canvas.create_image(3000, 690, image = img_dimond1, tags= 'DIAMOND')
+dimond1_id = canvas.create_image(1900, 690, image = img_dimond1, tags= 'DIAMOND')
 
 # #.....Create a falling object (box)....
 
@@ -281,22 +281,13 @@ canvas.after(10, moveBom)
 
 
 
-
 #create player
 X_VELOCITY = 9
 Y_VELOCITY = 9
 
-
-# player_img = Image.open('images/players/player_down.png')
-# player_id = ImageTk.PhotoImage(player_img)
-# player = canvas.create_image(150, 700, image=player_id )
-
-# player_img2 =Image.open('images/players/player_left.png')
-# player_id2 = ImageTk.PhotoImage(player_img2)
-
 player1_img=Image.open('images/players/player1.png')
 player1_id = ImageTk.PhotoImage(player1_img)
-player1 = canvas.create_image(150, 653, image=player1_id )
+player1 = canvas.create_image(150, 653, image=player1_id , tags='PLAYER')
 
 player2_img =Image.open('images/players/player2.png')
 player2_id = ImageTk.PhotoImage(player2_img)
@@ -304,21 +295,21 @@ player2_id = ImageTk.PhotoImage(player2_img)
 #touch
 def move_player1():
     coords= canvas.coords(player1)
-    players1=canvas.find_withtag('STONE')
+    players1=canvas.find_withtag('DIAMOND')
     overlap1= canvas.find_overlapping(coords[0], coords[1], coords[0]+player1_id.width(), coords[1]+player1_id.height())
     for py1 in players1:
         if py1 in overlap1:
             return py1
     return 0
 
-# def move_player2():
-#     coord= canvas.coords(actor_id)
-#     players2=canvas.find_withtag('player2')
-#     overlap2= canvas.find_overlapping(coord[0], coord[1], coord[0]+player_id.width(), coord[1]+player_id.height())
-#     for player2 in players2:
-#         if player2 in overlap2:
-#             return player2
-#     return 0
+def move_player2():
+    coords= canvas.coords(player1)
+    players1=canvas.find_withtag('FLAG')
+    overlap1= canvas.find_overlapping(coords[0], coords[1], coords[0]+player1_id.width(), coords[1]+player1_id.height())
+    for py1 in players1:
+        if py1 in overlap1:
+            return py1
+    return 0
 
 def game_lose():
     index =canvas.coords(player1)
@@ -339,10 +330,16 @@ died =Image.open('images/died.png')
 resize =died.resize((120,100))
 player_died = ImageTk.PhotoImage(resize)
 
+
 #Window lose
 def lose_window():
     canvas.create_image(700,400, image=over, tags= 'LOSE')
     canvas.itemconfigure(player1, image =player_died)
+
+#Window lose
+def win_window():
+    canvas.create_image(700,400, image=over, tags= 'WIN')
+    canvas.itemconfigure(player1, image =player_win)
 
 
 
@@ -372,18 +369,23 @@ def move_shape(event):
 
     if  game_lose():
         lose_window()
+    shape1 = move_player1()
+    shape2 = move_player2()
+    if shape1>0:
+        canvas.delete(shape1)
+    if shape2>0:
+        canvas.delete(shape2)
+    
 
 #Gravity
 
 #No auto scroll
 def scroll_right(event):
     canvas.xview('scroll', 1, 'units')
-    move_shape(event)
 
 def scroll_left(event):
     canvas.xview('scroll', -1, 'units')
 
 window.bind("<Key>", move_shape)
-# window.bind("<Right>", scroll_right)
 
 window.mainloop()
