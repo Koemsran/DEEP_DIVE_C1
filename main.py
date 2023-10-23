@@ -6,7 +6,8 @@ from random import randrange
 from random import randint, choice
 import pygame
 import threading 
-
+from pygame import mixer
+import time
 
 
 # Create the Tkinter window
@@ -52,40 +53,40 @@ bg1_image = Image.open('images/bg1.png')
 img_bg1 =ImageTk.PhotoImage(bg1_image)
     
 
-image_bubble_list = []
-for i in range(50):
-    bubble1_image = Image.open('images/bubbles/bubble1.png')
-    bubble1 = ImageTk.PhotoImage(bubble1_image)
-    image_bubble_list.append(bubble1)
+# image_bubble_list = []
+# for i in range(50):
+#     bubble1_image = Image.open('images/bubbles/bubble1.png')
+#     bubble1 = ImageTk.PhotoImage(bubble1_image)
+#     image_bubble_list.append(bubble1)
     
-# Iterate over the list of PhotoImage objects and create a create_image() item for each image.
-x=0
-y=0
-for image in image_bubble_list:
-    canvas.create_image(x, y, image=image, tag="BUBBLE")
-    x+=100
-    y+=100
+# # Iterate over the list of PhotoImage objects and create a create_image() item for each image.
+# x=0
+# y=0
+# for image in image_bubble_list:
+#     canvas.create_image(x, y, image=image, tag="BUBBLE")
+#     x+=100
+#     y+=100
     
-# Function to update the object's position
-def update_position_down():
-    bubble_coods = canvas.coords('BUBBLE')
+# # Function to update the object's position
+# def update_position_down():
+#     bubble_coods = canvas.coords('BUBBLE')
 
-    if bubble_coods[1]< 700:
-        canvas.move('BUBBLE', 0, 3)
+#     if bubble_coods[1]< 700:
+#         canvas.move('BUBBLE', 0, 3)
         
-        window.after(50, update_position_down)
-    else:
-        update_position_up()
+#         window.after(50, update_position_down)
+#     else:
+#         update_position_up()
 
-def update_position_up():
-    bubble_coods = canvas.coords('BUBBLE')
-    if bubble_coods[1]> -200 :
-        canvas.move('BUBBLE', 0, -2)
-        window.after(30, update_position_up)
-    else:
-        update_position_down()
+# def update_position_up():
+#     bubble_coods = canvas.coords('BUBBLE')
+#     if bubble_coods[1]> -200 :
+#         canvas.move('BUBBLE', 0, -2)
+#         window.after(30, update_position_up)
+#     else:
+#         update_position_down()
 
-window.after(30, update_position_up)
+# window.after(30, update_position_up)
 
 
 
@@ -210,16 +211,7 @@ bom2_id = canvas.create_image(500, 685, image = img_bom2, tags = 'BOM')
 
 #Create a falling object (Fish)
 
-# # Create a falling object (grasses)
-grass1_id = canvas.create_image(1200, 565, image = img_grass1)
-grass2_id = canvas.create_image(2385,565, image = img_grass2)
-grass3_id = canvas.create_image(3400, 590, image = img_grass3)
-grass6_id = canvas.create_image(400, 650, image = img_grass6)
-grass6_id = canvas.create_image(1800, 650, image = img_grass6)
-grass6_id = canvas.create_image(3200, 650, image = img_grass6)
-grass7_id = canvas.create_image(1500, 700, image = img_grass7)
-grass7_id = canvas.create_image(2600, 700, image = img_grass7)
-grass7_id = canvas.create_image(3600, 700, image = img_grass7)
+
 
 # # Create a falling object (stones)
 stone3_id = canvas.create_image(1000, 685, image = img_stone3, tags= 'STONE')
@@ -295,7 +287,7 @@ canvas.after(10, moveBom)
 
 pygame.mixer.init()
 
-sound = pygame.mixer.Sound('images/numsic/song1.mp3')
+sound = pygame.mixer.Sound('images/sounds/song1.mp3')
 def play_sound():
     while True:
         sound.play()
@@ -314,11 +306,19 @@ X_VELOCITY = 9
 Y_VELOCITY = 9
 
 player1_img=Image.open('images/players/player1.png')
-player1_id = ImageTk.PhotoImage(player1_img)
+resize_player1 = player1_img.resize((170,140))
+player1_id = ImageTk.PhotoImage(resize_player1)
 player1 = canvas.create_image(150, 653, image=player1_id , tags='PLAYER')
 
 player2_img =Image.open('images/players/player2.png')
 player2_id = ImageTk.PhotoImage(player2_img)
+
+player3_img =Image.open('images/players/player3.png')
+resize_player3 = player3_img.resize((150,120))
+player3_id = ImageTk.PhotoImage(resize_player3)
+
+player4_img =Image.open('images/players/player4.png')
+player4_id = ImageTk.PhotoImage(player4_img)
 
 #touch
 def move_player1():
@@ -332,11 +332,11 @@ def move_player1():
 
 def move_player2():
     coords= canvas.coords(player1)
-    players1=canvas.find_withtag('FLAG')
-    overlap1= canvas.find_overlapping(coords[0], coords[1], coords[0]+player1_id.width(), coords[1]+player1_id.height())
-    for py1 in players1:
-        if py1 in overlap1:
-            return py1
+    players2=canvas.find_withtag('FLAG')
+    overlap2= canvas.find_overlapping(coords[0], coords[1], coords[0]+player1_id.width(), coords[1]+player1_id.height())
+    for py2 in players2:
+        if py2 in overlap2:
+            return py2
     return 0
 
 def game_lose():
@@ -351,25 +351,59 @@ def game_lose():
 # Window lose imge
 game =Image.open('images/bg1.png')
 lose = ImageTk.PhotoImage(game)
+
 game_over =Image.open('images/game_over.png')
 over = ImageTk.PhotoImage(game_over)
+
 
 died =Image.open('images/died.png')
 resize =died.resize((120,100))
 player_died = ImageTk.PhotoImage(resize)
 
+#Win image
+game_win =Image.open('images/winner.png')
+win = ImageTk.PhotoImage(game_win)
 
 #Window lose
 def lose_window():
-    canvas.create_image(700,400, image=over, tags= 'LOSE')
+    canvas.delete('all')
+    canvas.create_image(400,300, image= lose, tags= 'LOSE')
+    canvas.create_image(900,300, image= lose, tags= 'LOSE')
+    canvas.create_image(670,400, image= over, tags= 'LOSE')
     canvas.itemconfigure(player1, image =player_died)
+    canvas.create_image(110, 100, image=btn_back_game, tags="back")
+#put sound
+    mixer.init()
+    mixer.music.load('images/sounds/lose.mp3')
+    mixer.music.play()
+    time.sleep(2)
+    mixer.music.stop()
 
-#Window lose
 def win_window():
-    canvas.create_image(700,400, image=over, tags= 'WIN')
-    canvas.itemconfigure(player1, image =player_win)
+    canvas.delete('all')
+    canvas.create_image(400,300, image= lose, tags= 'WIN')
+    canvas.create_image(900,300, image= lose, tags= 'WIN')
+    canvas.create_image(670,400, image= game_win, tags= 'WIN')
+    canvas.itemconfigure(player1, image =player_died)
+    canvas.create_image(110, 100, image=btn_back_game, tags="back")
+#put sound
+    mixer.init()
+    mixer.music.load('images/sounds/winner.mp3')
+    mixer.music.play()
+    time.sleep(1.5)
+    mixer.music.stop()
 
 
+# # Create a falling object (grasses)
+grass1_id = canvas.create_image(1200, 565, image = img_grass1)
+grass2_id = canvas.create_image(2385,565, image = img_grass2)
+grass3_id = canvas.create_image(3400, 590, image = img_grass3)
+grass6_id = canvas.create_image(400, 650, image = img_grass6)
+grass6_id = canvas.create_image(1800, 650, image = img_grass6)
+grass6_id = canvas.create_image(3200, 650, image = img_grass6)
+grass7_id = canvas.create_image(1500, 700, image = img_grass7)
+grass7_id = canvas.create_image(2600, 700, image = img_grass7)
+grass7_id = canvas.create_image(3600, 700, image = img_grass7)
 
 def is_border_left():
         return canvas.coords(player1)[0] < 30
@@ -394,16 +428,20 @@ def move_shape(event):
         canvas.move(player1, 0, -10)
     elif event.keysym == "Down" and not is_border_bottom():
         canvas.move(player1, 0, 10)
-
-    if  game_lose():
-        lose_window()
     shape1 = move_player1()
     shape2 = move_player2()
+    if  game_lose():
+        lose_window()
     if shape1>0:
         canvas.delete(shape1)
+        mixer.init()
+        mixer.music.load('images/sounds/got.mp3')
+        mixer.music.play()
+        time.sleep(0.7)
+        mixer.music.stop()
     if shape2>0:
         canvas.delete(shape2)
-    
+        win_window()
 
 #Gravity
 
@@ -415,5 +453,81 @@ def scroll_left(event):
     canvas.xview('scroll', -1, 'units')
 
 window.bind("<Key>", move_shape)
+
+
+
+
+# # Varaible
+
+game_start = tk.PhotoImage(file="images/menus/bg_start.png")
+# game_bg = tk.PhotoImage(file="images/menus/bg.png")
+# game_level = tk.PhotoImage(file="images/menus/bg_level.png")
+
+btn_menus_game = tk.PhotoImage(file="images/menus/menus 1.png")
+btn_start_game = tk.PhotoImage(file="images/menus/start_menu.png")
+btn_continue_game = tk.PhotoImage(file="images/menus/continue_menu.png")
+btn_exit_game = tk.PhotoImage(file="images/menus/exit_menu.png")
+btn_back_game = tk.PhotoImage(file="images/menus/back_menu.png")
+
+# level1 = tk.PhotoImage(file="images/menus/level1.png")
+# level2 = tk.PhotoImage(file="images/menus/level2.png")
+# level3 = tk.PhotoImage(file="images/menus/level3.png")
+
+# # Show start game
+def gameShow(event):
+    canvas.delete("all")
+    canvas.create_image(680, 372, image=game_start)
+    canvas.create_image(660,100, image=btn_menus_game, tags="menusgame")
+    canvas.create_image(660,280, image=btn_start_game, tags="startgame")
+    canvas.create_image(660,420, image=btn_continue_game, tags="continue")
+    canvas.create_image(655,550,image=btn_exit_game, tags="exit")
+
+# # show level game
+
+# def levelGame(event):
+#     canvas.delete(all)
+#     canvas.create_image(680,372, image=game_level)
+#     canvas.create_image(250,372, image=level1, tags = 'level1')
+#     canvas.create_image(670,372, image=level2)
+#     canvas.create_image(1100,372, image=level3)
+#     canvas.create_image(110, 100, image=btn_back_game, tags="back")
+
+# #level1 of game
+# def showLevel1(event):
+#     canvas.create_image(50,60, image = img_bg1)  
+
+
+# # show for how to play
+
+# def gameHelp(event):
+#     canvas.delete("all")
+#     canvas.create_image(680, 372, image=game_bg)
+#     canvas.create_image(110, 200, image=btn_back_game, tags="back")
+
+# # close game
+# def gameExit(event):
+#     window.destroy()
+
+# #display winner
+
+
+# canvas.create_image(680, 372, image=game_start)
+# canvas.create_image(660,100, image=btn_menus_game, tags="menusgame")
+# canvas.create_image(660,280, image=btn_start_game, tags="startgame")
+# canvas.create_image(660,420, image=btn_continue_game, tags="continue")
+# canvas.create_image(655,550,image=btn_exit_game, tags="exit")
+# # winsound.PlaySound("sounds/open.wav",winsound.SND_FILENAME | winsound.SND_ASYNC)
+
+
+# # Bind the button clicks to the corresponding functions
+
+# canvas.tag_bind("startgame", "<Button-1>",levelGame )
+# canvas.tag_bind("continue", "<Button-1>",levelGame )
+# canvas.tag_bind("exit", "<Button-1>", gameExit)
+canvas.tag_bind("back", "<Button-1>", lose_window, win_window)
+# canvas.tag_bind("level1", "<Button-1>", showLevel1)
+
+
+# canvas.pack(expand=True, fill='both')
 
 window.mainloop()
