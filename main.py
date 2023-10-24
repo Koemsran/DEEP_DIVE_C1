@@ -449,7 +449,8 @@ player1_id = ImageTk.PhotoImage(player1_img)
 player1 = canvas.create_image(150, 653, image=player1_id , tags='PLAYER')
 
 player2_img =Image.open('images/players/player2.png')
-player2_id = ImageTk.PhotoImage(player2_img)
+resize_player2=player2_img.resize((250, 200))
+player2_id = ImageTk.PhotoImage(resize_player2)
 
 player3_img =Image.open('images/players/player_right.png')
 resize_player3 = player3_img.resize((150,120))
@@ -606,8 +607,6 @@ def scroll_left(event):
     canvas.xview('scroll', -1, 'units')
 
 window.bind("<Key>", move_shape)
-
-
 
 
 # ------------------Varaible ------------------
