@@ -347,7 +347,7 @@ fish6_id = canvas.create_image(1200, 400, image = img_fish6, tags='FISH')
 fish6_id = canvas.create_image(700, 200, image = img_fish6, tags='FISH')
 fish7_id = canvas.create_image(800, 300, image = img_fish7, tags='FISH')
 # fish8_id = canvas.create_image(700, 500, image = img_fish8, tags='FISHL')
-fish9_id = canvas.create_image(300, 300, image = img_fish9, tags='FISHL')
+fish9_id = canvas.create_image(300, 300, image = img_fish9, tags='FISH')
 
 # Function to update the object's position
 def update_position_rights():
@@ -367,26 +367,6 @@ def update_position_lefts():
         update_position_rights()
 
 window.after(20, update_position_rights)
-
-
-# Function to update the object's position
-def update_position_leftss():
-    fish_coods = canvas.coords('FISHL')
-    if fish_coods[0]< 3000:
-        canvas.move('FISHL', 3, 0)
-        window.after(20, update_position_leftss)
-    else:
-        update_position_rightss()
-
-def update_position_rightss():
-    fish_coods = canvas.coords('FISHL')
-    if fish_coods[0]> -100 :
-        canvas.move('FISHL', -3, 0)
-        window.after(20, update_position_rightss)
-    else:
-        update_position_leftss()
-
-window.after(20, update_position_leftss)
 
 
 # # Create a falling object (shark)
