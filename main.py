@@ -217,6 +217,12 @@ stone3_image = Image.open('images/stones/stone3.png')
 stone3_resize = stone3_image.resize((80,70))
 img_stone3 =ImageTk.PhotoImage(stone3_resize)
 
+#bom
+
+bom3_image = Image.open('images/bom3.png')
+bom3_resize = bom3_image.resize((50,300))
+img_bom3 =ImageTk.PhotoImage(bom3_resize)
+
 #image flag
 flag_image = Image.open('images/flag.png')
 flag_resize = flag_image.resize((80,90))
@@ -249,6 +255,8 @@ for img in image_list:
 # Create a falling object (boms)
 bom_id = canvas.create_image(190, 200, image = img_bom, tags= 'BOM')
 bom2_id = canvas.create_image(500, 685, image = img_bom2, tags = 'BOM')
+bom3_id = canvas.create_image(1500, 150, image = img_bom3, tags = 'BOM')
+bom3_id = canvas.create_image(2900, 130, image = img_bom3, tags = 'BOM')
 
 #Create a falling object (Fish)
 
@@ -264,7 +272,8 @@ stone1_id = canvas.create_image(200, 685, image = img_stone1, tags= 'STONE')
 
 dimond1_id = canvas.create_image(700, 690, image = img_dimond1, tags= 'DIAMOND')
 dimond1_id = canvas.create_image(3000, 690, image = img_dimond1, tags= 'DIAMOND')
-dimond1_id = canvas.create_image(1900, 690, image = img_dimond1, tags= 'DIAMOND')
+dimond1_id = canvas.create_image(1700, 297, image = img_dimond1, tags= 'DIAMOND')
+dimond1_id = canvas.create_image(3000, 245, image = img_dimond1, tags= 'DIAMOND')
 
 # # Create a falling object (fishes)
 
@@ -307,6 +316,19 @@ box1_id = canvas.create_image(2260, 630, image = img_box1)
 box1_id = canvas.create_image(2800, 690, image = img_box1)
 box1_id = canvas.create_image(3333, 690, image = img_box1)
 box1_id = canvas.create_image(3460, 690, image = img_box1)
+
+box1_id = canvas.create_image(3000, 300, image = img_box1)
+box1_id = canvas.create_image(3070, 300, image = img_box1)
+box1_id = canvas.create_image(1700, 350, image = img_box1)
+box1_id = canvas.create_image(1700, 400, image = img_box1)
+box1_id = canvas.create_image(1700, 450, image = img_box1)
+box1_id = canvas.create_image(1700, 500, image = img_box1)
+box1_id = canvas.create_image(1700, 550, image = img_box1)
+box1_id = canvas.create_image(1700, 600, image = img_box1)
+box1_id = canvas.create_image(1700, 650, image = img_box1)
+box1_id = canvas.create_image(1700, 690, image = img_box1)
+
+box1_id = canvas.create_image(1700, 200, image = img_box1)
 
 
 # ..................dimond​​ score.............
