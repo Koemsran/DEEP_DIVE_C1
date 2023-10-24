@@ -140,7 +140,6 @@ box1_resize = box1_image.resize((60,60))
 img_box1 =ImageTk.PhotoImage(box1_resize)
 
 #...........shark..............
-<<<<<<< HEAD
 
 shark1_image = Image.open('images/fishes/fish Shark/shark1.png')
 shark1_resize = shark1_image.resize((250,80))
@@ -148,14 +147,6 @@ img_shark1 =ImageTk.PhotoImage(shark1_resize)
 
 shark2_image = Image.open('images/fishes/fish Shark/shark 2.png')
 shark2_resize = shark2_image.resize((250,120))
-=======
-shark1_image = Image.open('images/enemies/enemy1.gif')
-shark1_resize = shark1_image.resize((250,100))
-img_shark1 =ImageTk.PhotoImage(shark1_resize)
-
-shark2_image = Image.open('images/enemies/enemt2.gif')
-shark2_resize = shark2_image.resize((250,100))
->>>>>>> b87e5ba30feab67920500b859f2cb4bea7d698ef
 img_shark2 =ImageTk.PhotoImage(shark2_resize)
 
 shark3_image = Image.open('images/fishes/fish Shark/shark 3.png')
@@ -240,7 +231,6 @@ stone3_image = Image.open('images/stones/stone3.png')
 stone3_resize = stone3_image.resize((80,70))
 img_stone3 =ImageTk.PhotoImage(stone3_resize)
 
-<<<<<<< HEAD
 #bom
 
 bom3_image = Image.open('images/bom3.png')
@@ -248,10 +238,6 @@ bom3_resize = bom3_image.resize((50,300))
 img_bom3 =ImageTk.PhotoImage(bom3_resize)
 
 #image flag
-=======
-#--------------------------image flag--------------------------
-
->>>>>>> b87e5ba30feab67920500b859f2cb4bea7d698ef
 flag_image = Image.open('images/flag.png')
 flag_resize = flag_image.resize((80,90))
 img_flag =ImageTk.PhotoImage(flag_resize)
@@ -415,15 +401,10 @@ fish8_id = canvas.create_image(700, 500, image = img_fish8)
 fish9_id = canvas.create_image(300, 300, image = img_fish9)
 
 
-<<<<<<< HEAD
 # # Create a falling object (shark)
 shark1_id = canvas.create_image(1000, 500, image = img_shark1)
 shark2_id = canvas.create_image(2500, 500, image = img_shark2)
 shark3_id = canvas.create_image(3500, 500, image = img_shark3)
-=======
-# Create a falling object (shark)
-shark1_id = canvas.create_image(2000, 500, image = img_shark1)
->>>>>>> b87e5ba30feab67920500b859f2cb4bea7d698ef
 
 #.....Create a falling object (box)....
 #--------------------------Create a falling object (shark)--------------------------
