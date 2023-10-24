@@ -72,6 +72,7 @@ for i in range(50):
     img_shark1 =ImageTk.PhotoImage(shark1_resize)
     image_bubble_list.append(img_shark1)
     
+<<<<<<< HEAD
 # # Iterate over the list of PhotoImage objects and create a create_image() item for each image.
 # x=0
 # y=0
@@ -79,6 +80,15 @@ for i in range(50):
 #     canvas.create_image(x, y, image=image, tag="BUBBLE")
 #     x+=100
 #     y+=100
+=======
+# Iterate over the list of PhotoImage objects and create a create_image() item for each image.
+x=0
+y=0
+for image in image_bubble_list:
+    canvas.create_image(x, y, image=image, tag="BUBBLE")
+    x+=100
+    y+=100
+>>>>>>> 13b5f69bd86babc57054d6d3c819042babe3acd2
     
 # ..............Function to update the object's position..............
 
