@@ -73,7 +73,6 @@ for i in range(50):
     img_shark1 =ImageTk.PhotoImage(shark1_resize)
     image_bubble_list.append(img_shark1)
     
-<<<<<<< HEAD
 # Iterate over the list of PhotoImage objects and create a create_image() item for each image.
 x=0
 y=0
@@ -81,15 +80,6 @@ for image in image_bubble_list:
     canvas.create_image(x, y, image=image, tag="BUBBLE")
     x+=100
     y+=100
-=======
-# # Iterate over the list of PhotoImage objects and create a create_image() item for each image.
-# x=0
-# y=0
-# for image in image_bubble_list:
-#     canvas.create_image(x, y, image=image, tag="BUBBLE")
-#     x+=100
-#     y+=100
->>>>>>> cbe6afb6c8b703c1029e3aea9f1fb748f70029a5
     
 # # Function to update the object's position
 # def update_position_down():
@@ -149,8 +139,6 @@ box1_image = Image.open('images/box/box.png')
 box1_resize = box1_image.resize((60,60))
 img_box1 =ImageTk.PhotoImage(box1_resize)
 
-<<<<<<< HEAD
-=======
 #...........shark..............
 shark1_image = Image.open('images/fishes/fish Shark/shark1.png')
 shark1_resize = shark1_image.resize((250,100))
@@ -161,7 +149,6 @@ shark2_resize = shark2_image.resize((250,100))
 img_shark2 =ImageTk.PhotoImage(shark2_resize)
 
 
->>>>>>> cbe6afb6c8b703c1029e3aea9f1fb748f70029a5
 
 #grass image
 
