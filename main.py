@@ -64,45 +64,6 @@ img_shark1 =ImageTk.PhotoImage(shark1_resize)
 shark2_image = Image.open('images/fishes/fish Shark/shark 2.png')
 shark2_resize = shark2_image.resize((250,100))
 img_shark2 =ImageTk.PhotoImage(shark2_resize)
-    
-
-image_bubble_list = []
-for i in range(50):
-    shark1_image = Image.open('images/fishes/fish Shark/shark1.png')
-    shark1_resize = shark1_image.resize((250,100))
-    img_shark1 =ImageTk.PhotoImage(shark1_resize)
-    image_bubble_list.append(img_shark1)
-    
-# Iterate over the list of PhotoImage objects and create a create_image() item for each image.
-x=0
-y=0
-for image in image_bubble_list:
-    canvas.create_image(x, y, image=image, tag="BUBBLE")
-    x+=100
-    y+=100
-    
-# # Function to update the object's position
-# def update_position_down():
-#     bubble_coods = canvas.coords('BUBBLE')
-
-#     if bubble_coods[1]< 700:
-#         canvas.move('BUBBLE', 0, 3)
-        
-#         window.after(50, update_position_down)
-#     else:
-#         update_position_up()
-
-# def update_position_up():
-#     bubble_coods = canvas.coords('BUBBLE')
-#     if bubble_coods[1]> -200 :
-#         canvas.move('BUBBLE', 0, -2)
-#         window.after(30, update_position_up)
-#     else:
-#         update_position_down()
-
-# window.after(30, update_position_up)
-
-
 
 
 # group fish image
@@ -228,6 +189,52 @@ anime1_id = canvas.create_image(800, 800, image=img_shark1, tags = 'ANIME')
 anime2_id = canvas.create_image(1600, 400, image=img_shark2, tags = 'ANIMES')
 
 
+
+#Anime on bubble water
+
+bubble_img = Image.open('images/bubbles/bubble1.png')
+bubble_id=ImageTk.PhotoImage(bubble_img)
+
+# bubbles_id = canvas.create_image(1600, 400, image=bubble_id)
+
+image_bubble_list = []
+for i in range(100):
+    bubble_img = Image.open('images/bubbles/bubble1.png')
+    bubble1 =ImageTk.PhotoImage(bubble_img)
+    image_bubble_list.append(bubble1)
+    
+# Iterate over the list of PhotoImage objects and create a create_image() item for each image.
+x=0
+y=0
+for image in image_bubble_list:
+    canvas.create_image(x, y, image=image, tag="BUBBLE")
+    x+=500
+    y+=100
+    
+# Function to update the object's position
+def update_position_down():
+    bubble_coods = canvas.coords('BUBBLE')
+
+    if bubble_coods[1]< 500:
+        canvas.move('BUBBLE', 0, 3)
+        
+        window.after(50, update_position_down)
+    else:
+        update_position_up()
+
+def update_position_up():
+    bubble_coods = canvas.coords('BUBBLE')
+    if bubble_coods[1]> -300 :
+        canvas.move('BUBBLE', 0, -2)
+        window.after(30, update_position_up)
+    else:
+        update_position_down()
+
+window.after(30, update_position_up)
+
+
+
+
 # #make fish1 run
 # Iterate over the list of PhotoImage objects and create a create_image() item for each image.
 canvas.create_image(x, y, image=img, tag="ANIME")
@@ -274,22 +281,22 @@ def update_position_lefts():
 window.after(30, update_position_rights)
 
 
-# # Create a falling object (stones)
+# Create a falling object (stones)
 stone3_id = canvas.create_image(1000, 685, image = img_stone3, tags= 'STONE')
 stone2_id = canvas.create_image(2000, 685, image = img_stone2, tags= 'STONE')
 stone3_id = canvas.create_image(2900, 685, image = img_stone3, tags= 'STONE')
 stone1_id = canvas.create_image(200, 685, image = img_stone1, tags= 'STONE')
 
-# # Create a falling object (dimond1)
+# Create a falling object (dimond1)
 
 dimond1_id = canvas.create_image(700, 690, image = img_dimond1, tags= 'DIAMOND')
 dimond1_id = canvas.create_image(3000, 690, image = img_dimond1, tags= 'DIAMOND')
 dimond1_id = canvas.create_image(1900, 690, image = img_dimond1, tags= 'DIAMOND')
 
-# # Create a falling object (shark)
+# Create a falling object (shark)
 shark1_id = canvas.create_image(2000, 500, image = img_shark1)
 
-# #.....Create a falling object (box)....
+#.....Create a falling object (box)....
 
 box1_id = canvas.create_image(595, 690, image = img_box1)
 box1_id = canvas.create_image(650, 690, image = img_box1)
@@ -366,19 +373,20 @@ X_VELOCITY = 9
 Y_VELOCITY = 9
 
 player1_img=Image.open('images/players/player1.png')
-resize_player1 = player1_img.resize((170,140))
-player1_id = ImageTk.PhotoImage(resize_player1)
+player1_id = ImageTk.PhotoImage(player1_img)
 player1 = canvas.create_image(150, 653, image=player1_id , tags='PLAYER')
 
 player2_img =Image.open('images/players/player2.png')
 player2_id = ImageTk.PhotoImage(player2_img)
 
-player3_img =Image.open('images/players/player3.png')
+player3_img =Image.open('images/players/player_right.png')
 resize_player3 = player3_img.resize((150,120))
 player3_id = ImageTk.PhotoImage(resize_player3)
 
-player4_img =Image.open('images/players/player4.png')
-player4_id = ImageTk.PhotoImage(player4_img)
+player4_img =Image.open('images/players/player_down.png')
+resize_player4 = player4_img.resize((250, 200))
+player4_id = ImageTk.PhotoImage(resize_player4)
+
 
 #touch
 def move_player1():
@@ -454,7 +462,7 @@ def win_window():
     mixer.music.stop()
 
 
-# # Create a falling object (grasses)
+# Create a falling object (grasses)
 grass1_id = canvas.create_image(1200, 565, image = img_grass1)
 grass2_id = canvas.create_image(2385,565, image = img_grass2)
 grass3_id = canvas.create_image(3400, 590, image = img_grass3)
@@ -486,8 +494,10 @@ def move_shape(event):
         canvas.itemconfigure(player1, image = player1_id)
     elif event.keysym == "Up" and not is_border_top():
         canvas.move(player1, 0, -10)
+        canvas.itemconfigure(player1, image= player3_id)
     elif event.keysym == "Down" and not is_border_bottom():
         canvas.move(player1, 0, 10)
+        canvas.itemconfigure(player1, image=player4_id)
     shape1 = move_player1()
     shape2 = move_player2()
     if  game_lose():
