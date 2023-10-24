@@ -131,10 +131,6 @@ fish2_image = Image.open('images/fishes/fish1.gif')
 fish2_resize = fish2_image.resize((100,50))
 img_fish2 =ImageTk.PhotoImage(fish2_resize)
 
-# fish3_image = Image.open('images/fishes/fish2.gif')
-# fish3_resize = fish3_image.resize((200,150))
-# img_fish3 =ImageTk.PhotoImage(fish3_resize)
-
 fish4_image = Image.open('images/fishes/fish3.gif')
 fish4_resize = fish4_image.resize((150,100))
 img_fish4 =ImageTk.PhotoImage(fish4_resize)
@@ -199,13 +195,14 @@ stone3_image = Image.open('images/stones/stone3.png')
 stone3_resize = stone3_image.resize((80,70))
 img_stone3 =ImageTk.PhotoImage(stone3_resize)
 
-#bom
+#----------bom--------------
 
 bom3_image = Image.open('images/bom3.png')
 bom3_resize = bom3_image.resize((50,300))
 img_bom3 =ImageTk.PhotoImage(bom3_resize)
 
-#image flag
+#---------image flag-------------
+
 flag_image = Image.open('images/flag.png')
 flag_resize = flag_image.resize((80,90))
 img_flag =ImageTk.PhotoImage(flag_resize)
@@ -241,19 +238,11 @@ bom2_id = canvas.create_image(500, 685, image = img_bom2, tags = 'BOM')
 bom3_id = canvas.create_image(1500, 150, image = img_bom3, tags = 'BOM')
 bom3_id = canvas.create_image(2900, 130, image = img_bom3, tags = 'BOM')
 
-#------------Create a falling object (Fish)--------------
 
-# anime1_id = canvas.create_image(800, 800, image=img_shark1, tags = 'ANIME')
-# anime2_id = canvas.create_image(1600, 400, image=img_shark2, tags = 'ANIME')
-
-
-
-#Anime on bubble water
+#----------Anime on bubble water------------
 
 bubble_img = Image.open('images/bubbles/bubble1.png')
 bubble_id=ImageTk.PhotoImage(bubble_img)
-
-# bubbles_id = canvas.create_image(1600, 400, image=bubble_id)
 
 image_bubble_list = []
 for i in range(100):
@@ -261,7 +250,7 @@ for i in range(100):
     bubble1 =ImageTk.PhotoImage(bubble_img)
     image_bubble_list.append(bubble1)
     
-# Iterate over the list of PhotoImage objects and create a create_image() item for each image.
+# -----Iterate over the list of PhotoImage objects and create a create_image() item for each image.----
 x=0
 y=0
 for image in image_bubble_list:
@@ -269,7 +258,7 @@ for image in image_bubble_list:
     x+=500
     y+=100
     
-# Function to update the object's position
+# -----Function to update the object's position-----
 def update_position_down():
     bubble_coods = canvas.coords('BUBBLE')
 
@@ -293,14 +282,14 @@ window.after(30, update_position_up)
 
 
 
-# #make fish1 run
+# #----make fish1 run----
 # Iterate over the list of PhotoImage objects and create a create_image() item for each image.
 canvas.create_image(2000, 400, image=img_shark1, tag="ENEMY")
 canvas.create_image(500, 200, image=img_shark1, tag="ENEMY")
 # Function to update the object's position
 def update_position_right():
     fish_coods = canvas.coords('ENEMY')
-    if fish_coods[0]< 3000:
+    if fish_coods[0]< 4000:
         canvas.itemconfigure('ENEMY', image = img_shark2 )
         canvas.move('ENEMY', 3, 0)
         window.after(20, update_position_right)
@@ -320,32 +309,13 @@ window.after(20, update_position_right)
 
 
 # ---------change image as animated-----------
-def put_animated():
-    if update_position_right():
-        canvas.itemconfigure('ENEMY', image = img_shark3)
-        window.after(1, put_animated)
-window.after(1, put_animated)
+# def put_animated():
+#     if update_position_right():
+#         canvas.itemconfigure('ENEMY', image = img_shark3)
+#         window.after(1, put_animated)
+# window.after(1, put_animated)
 # Iterate over the list of PhotoImage objects and create a create_image() item for each image.
 
-
-# Function to update the object's position
-# def update_position_rights():
-#     fish_coods = canvas.coords('ENEMY')
-
-#     if fish_coods[0]< 0:
-#         canvas.move('ENEMY', 3, 0)
-        
-#         window.after(10, update_position_rights)
-#     else:
-#         update_position_lefts()
-
-# def update_position_lefts():
-#     fish_coods = canvas.coords('ENEMY')
-#     if fish_coods[0]> -1000 :
-#         canvas.move('ENEMY', -2, 0)
-#         window.after(10, update_position_lefts)
-
-# window.after(30, update_position_rights)
 
 
 # Create a falling object (stones)
