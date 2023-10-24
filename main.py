@@ -245,12 +245,8 @@ window.after(30, update_position_up)
 canvas.create_image(2000, 400, image=img_shark1, tag="ENEMY")
 canvas.create_image(500, 200, image=img_shark1, tag="ENEMY")
 
-<<<<<<< HEAD
-#-----Function to update the object's position-----
-
-=======
 # Function to update the object's position
->>>>>>> 35a89591e4c975258c471a0400bb3951f9f95496
+
 def update_position_right():
     fish_coods = canvas.coords('ENEMY')
     if fish_coods[0]< 4000:
@@ -287,18 +283,6 @@ dimond1_id = canvas.create_image(3000, 245, image = img_dimond1, tags= 'DIAMOND'
 
 # # Create a falling object (fishes)
 
-<<<<<<< HEAD
-fish2_id = canvas.create_image(100, 200, image = img_fish2)
-fish4_id = canvas.create_image(250, 500, image = img_fish4)
-fish4_id = canvas.create_image(1200, 100, image = img_fish4)
-fish5_id = canvas.create_image(900, 690, image = img_fish5)
-fish6_id = canvas.create_image(1200, 400, image = img_fish6)
-fish6_id = canvas.create_image(700, 200, image = img_fish6)
-fish7_id = canvas.create_image(800, 300, image = img_fish7)
-fish8_id = canvas.create_image(700, 500, image = img_fish8)
-fish9_id = canvas.create_image(300, 300, image = img_fish9)
-
-=======
 # fish2_id = canvas.create_image(100, 200, image = img_fish2, tags='FISHL')
 fish4_id = canvas.create_image(250, 500, image = img_fish4, tags='FISH')
 fish4_id = canvas.create_image(1200, 100, image = img_fish4, tags='FISH')
@@ -306,7 +290,6 @@ fish5_id = canvas.create_image(900, 690, image = img_fish5, tags='FISH')
 fish6_id = canvas.create_image(1200, 400, image = img_fish6, tags='FISH')
 fish6_id = canvas.create_image(700, 200, image = img_fish6, tags='FISH')
 fish7_id = canvas.create_image(800, 300, image = img_fish7, tags='FISH')
-# fish8_id = canvas.create_image(700, 500, image = img_fish8, tags='FISHL')
 fish9_id = canvas.create_image(300, 300, image = img_fish9, tags='FISH')
 
 # Function to update the object's position
@@ -328,18 +311,6 @@ def update_position_lefts():
 
 window.after(20, update_position_rights)
 
-
-# # Create a falling object (shark)
-shark1_id = canvas.create_image(1000, 500, image = img_shark1)
-shark2_id = canvas.create_image(2500, 500, image = img_shark2)
-shark3_id = canvas.create_image(3500, 500, image = img_shark3)
-
-
-#--------------------------Create a falling object (shark)--------------------------
-
-shark1_id = canvas.create_image(2000, 500, image = img_shark1)
-
->>>>>>> 35a89591e4c975258c471a0400bb3951f9f95496
 # --------------------------Create a falling object (box)--------------------------
 
 box1_id = canvas.create_image(595, 690, image = img_box1,tags='BOX')
@@ -363,19 +334,6 @@ box1_id = canvas.create_image(2800, 690, image = img_box1,tags='BOX')
 box1_id = canvas.create_image(3333, 690, image = img_box1,tags='BOX')
 box1_id = canvas.create_image(3460, 690, image = img_box1,tags='BOX')
 
-<<<<<<< HEAD
-box1_id = canvas.create_image(3000, 300, image = img_box1)
-box1_id = canvas.create_image(3070, 300, image = img_box1)
-box1_id = canvas.create_image(1700, 350, image = img_box1)
-box1_id = canvas.create_image(1700, 400, image = img_box1)
-box1_id = canvas.create_image(1700, 450, image = img_box1)
-box1_id = canvas.create_image(1700, 500, image = img_box1)
-box1_id = canvas.create_image(1700, 550, image = img_box1)
-box1_id = canvas.create_image(1700, 600, image = img_box1)
-box1_id = canvas.create_image(1700, 650, image = img_box1)
-box1_id = canvas.create_image(1700, 690, image = img_box1)
-box1_id = canvas.create_image(1700, 200, image = img_box1)
-=======
 box1_id = canvas.create_image(3000, 300, image = img_box1,tags='BOX')
 box1_id = canvas.create_image(3070, 300, image = img_box1,tags='BOX')
 box1_id = canvas.create_image(1700, 350, image = img_box1,tags='BOX')
@@ -386,9 +344,7 @@ box1_id = canvas.create_image(1700, 550, image = img_box1,tags='BOX')
 box1_id = canvas.create_image(1700, 600, image = img_box1,tags='BOX')
 box1_id = canvas.create_image(1700, 650, image = img_box1,tags='BOX')
 box1_id = canvas.create_image(1700, 690, image = img_box1,tags='BOX')
-
 box1_id = canvas.create_image(1700, 200, image = img_box1,tags='BOX')
->>>>>>> 35a89591e4c975258c471a0400bb3951f9f95496
 
 # ..................dimond​​ score.............
 canvas.create_text(800, 50, text=": 0", font=("bold", 20), fill="white", tags = 'SCORE')
@@ -431,10 +387,6 @@ def play_sound():
 sound_thread = threading.Thread(target=play_sound)
 sound_thread.start()
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 35a89591e4c975258c471a0400bb3951f9f95496
 #------------------create player------------------
 
 X_VELOCITY = 9
