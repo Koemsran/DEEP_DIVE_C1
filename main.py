@@ -23,6 +23,8 @@ JUMP_FORCE = 300
 SPEED = 6
 TIMED_LOOP = 10
 
+
+
 # ------------- Variables ---------------------
 
 frame = tk.Frame(window, width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
@@ -286,6 +288,7 @@ window.after(30, update_position_up)
 # Iterate over the list of PhotoImage objects and create a create_image() item for each image.
 canvas.create_image(2000, 400, image=img_shark1, tag="ENEMY")
 canvas.create_image(500, 200, image=img_shark1, tag="ENEMY")
+
 # Function to update the object's position
 def update_position_right():
     fish_coods = canvas.coords('ENEMY')
@@ -336,16 +339,54 @@ dimond1_id = canvas.create_image(3000, 245, image = img_dimond1, tags= 'DIAMOND'
 
 # # Create a falling object (fishes)
 
-fish2_id = canvas.create_image(100, 200, image = img_fish2)
-# fish3_id = canvas.create_image(400, 300, image = img_fish3)
-fish4_id = canvas.create_image(250, 500, image = img_fish4)
-fish4_id = canvas.create_image(1200, 100, image = img_fish4)
-fish5_id = canvas.create_image(900, 690, image = img_fish5)
-fish6_id = canvas.create_image(1200, 400, image = img_fish6)
-fish6_id = canvas.create_image(700, 200, image = img_fish6)
-fish7_id = canvas.create_image(800, 300, image = img_fish7)
-fish8_id = canvas.create_image(700, 500, image = img_fish8)
-fish9_id = canvas.create_image(300, 300, image = img_fish9)
+# fish2_id = canvas.create_image(100, 200, image = img_fish2, tags='FISHL')
+fish4_id = canvas.create_image(250, 500, image = img_fish4, tags='FISH')
+fish4_id = canvas.create_image(1200, 100, image = img_fish4, tags='FISH')
+fish5_id = canvas.create_image(900, 690, image = img_fish5, tags='FISH')
+fish6_id = canvas.create_image(1200, 400, image = img_fish6, tags='FISH')
+fish6_id = canvas.create_image(700, 200, image = img_fish6, tags='FISH')
+fish7_id = canvas.create_image(800, 300, image = img_fish7, tags='FISH')
+# fish8_id = canvas.create_image(700, 500, image = img_fish8, tags='FISHL')
+fish9_id = canvas.create_image(300, 300, image = img_fish9, tags='FISHL')
+
+# Function to update the object's position
+def update_position_rights():
+    fish_coods = canvas.coords('FISH')
+    if fish_coods[0]< 4000:
+        canvas.move('FISH', 4, 0)
+        window.after(20, update_position_rights)
+    else:
+        update_position_lefts()
+
+def update_position_lefts():
+    fish_coods = canvas.coords('FISH')
+    if fish_coods[0]> -150 :
+        canvas.move('FISH', -5, 0)
+        window.after(20, update_position_lefts)
+    else:
+        update_position_rights()
+
+window.after(20, update_position_rights)
+
+
+# Function to update the object's position
+def update_position_leftss():
+    fish_coods = canvas.coords('FISHL')
+    if fish_coods[0]< 3000:
+        canvas.move('FISHL', 3, 0)
+        window.after(20, update_position_leftss)
+    else:
+        update_position_rightss()
+
+def update_position_rightss():
+    fish_coods = canvas.coords('FISHL')
+    if fish_coods[0]> -100 :
+        canvas.move('FISHL', -3, 0)
+        window.after(20, update_position_rightss)
+    else:
+        update_position_leftss()
+
+window.after(20, update_position_leftss)
 
 
 # # Create a falling object (shark)
@@ -437,8 +478,6 @@ def play_sound():
 sound_thread = threading.Thread(target=play_sound)
 sound_thread.start()
 
-
-
 #------------------create player------------------
 
 X_VELOCITY = 9
@@ -452,13 +491,96 @@ player2_img =Image.open('images/players/player2.png')
 resize_player2=player2_img.resize((250, 200))
 player2_id = ImageTk.PhotoImage(resize_player2)
 
-player3_img =Image.open('images/players/player_right.png')
+player3_img =Image.open('images/players/player_right1.png')
 resize_player3 = player3_img.resize((150,120))
 player3_id = ImageTk.PhotoImage(resize_player3)
 
 player4_img =Image.open('images/players/player_down.png')
 resize_player4 = player4_img.resize((250, 200))
 player4_id = ImageTk.PhotoImage(resize_player4)
+
+
+# #Gravity
+# #-------------Function----------------
+
+# #Check if the player can move by projecting the movement with dx and dy
+# #If checkground is True, check if the player is on the ground by projecting the movement with the last coordinate
+# #Instead of getting the platform list with canvas. Find_withtag("PLATFORM"), we could have used a global list
+# #Return True if the player can move (i.e is not near any wall), False otherwise
+
+# def check_movement(dx=0, dy=0, checkGround=False):
+#     coord = canvas.coords(player1)
+#     platforms = canvas.find_withtag("PLAYER")
+
+#     if coord[0] + dx < 0 or coord[0] + player1_id.width() > SCREEN_WIDTH:
+#         return False
+    
+#     if checkGround:
+#         overlap = canvas.find_overlapping(coord[0], coord[1], coord[0], coord[1]+ player1_id.height())
+#     else:
+#         overlap = canvas.find_overlapping(coord[0] +dx, coord[1]+dy, coord[0]+player1_id.width(), coord[1]+player1_id.height())
+#     # print(overlap)
+#     for platform in platforms:
+#         if platform in overlap:
+#             return False
+#     return True
+
+# #Jump by moving the player up by player
+# #Only if the player can move up
+# #The force paremeter is always decreasing by 1 until it reach 0
+# #The force should be higher than the gravity force to be able
+
+# def jump(force):
+#     if force > 0:
+#         if not check_movement(0, -force):
+#             canvas.move(player1, 0, -force)
+#             window.after(TIMED_LOOP, jump, force-1)
+
+# #The start_move function is called when a key is pressed
+# #It adds the key to the keypressed lish if it's not already in it
+# #If the keypressed lish was empty, it calls move function
+
+# def start_move(event):
+#     if event.keysym not in keyPressed:
+#         keyPressed.append(event.keysym)
+#         if len(keyPressed) == 1:
+#             move()
+
+# #The move function is called every TIME_LOOP milliseconds
+# #It checks if the player can move in the direction of the keyPressed lish
+# #It also check if the player is on the ground before jumping
+
+# def move():
+#     if not keyPressed ==[]:
+#         x = 0
+#         if "Left" in keyPressed:
+#             x -= SPEED
+#             canvas.itemconfig(player1, image=player4_id)
+#         elif "Right" in keyPressed:
+#             x += SPEED
+#             canvas.itemconfig(player1, image=player3_id)
+#         elif "space" in keyPressed and not check_movement(0, GRAVITY_FORCE, True):
+#             jump(JUMP_FORCE)
+#         if not check_movement(x):
+#             canvas.move(player1, x, 0)
+#         window.after(TIMED_LOOP, move)
+
+# #The gravity function is called every TIME_LOOP milliseconds
+# #It checks if the player can move down by GRAVITY_FORCE 
+# #It is always looping, even if the player can't move down
+# def gravity():
+#     if check_movement(0, GRAVITY_FORCE, True):
+#         canvas.move(player1, 0, GRAVITY_FORCE)
+#     window.after(TIMED_LOOP, gravity)
+
+# gravity()
+
+# #The stop _move function is called when a key is released
+# #It removes the key from the keyPress lish
+# def stop_move(event):
+#     global keyPressed
+#     if event.keysym in keyPressed:
+#         keyPressed.remove(event.keysym)
 
 
 # ------------------touch ------------------
@@ -679,6 +801,8 @@ def gameShow(event):
 # canvas.tag_bind("exit", "<Button-1>", gameExit)
 canvas.tag_bind("back", "<Button-1>", lose_window, win_window)
 # canvas.tag_bind("level1", "<Button-1>", showLevel1)
+
+
 
 
 # canvas.pack(expand=True, fill='both')
