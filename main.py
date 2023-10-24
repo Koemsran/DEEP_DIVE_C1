@@ -353,46 +353,46 @@ shark1_id = canvas.create_image(1000, 500, image = img_shark1)
 shark2_id = canvas.create_image(2500, 500, image = img_shark2)
 shark3_id = canvas.create_image(3500, 500, image = img_shark3)
 
-#.....Create a falling object (box)....
+
 #--------------------------Create a falling object (shark)--------------------------
 
 shark1_id = canvas.create_image(2000, 500, image = img_shark1)
 
 # --------------------------Create a falling object (box)--------------------------
 
-box1_id = canvas.create_image(595, 690, image = img_box1)
-box1_id = canvas.create_image(650, 690, image = img_box1)
-box1_id = canvas.create_image(650, 635, image = img_box1)
+box1_id = canvas.create_image(595, 690, image = img_box1,tags='BOX')
+box1_id = canvas.create_image(650, 690, image = img_box1,tags='BOX')
+box1_id = canvas.create_image(650, 635, image = img_box1,tags='BOX')
 
-box1_id = canvas.create_image(1250, 690, image = img_box1)
-box1_id = canvas.create_image(1300, 690, image = img_box1)
-box1_id = canvas.create_image(1300, 635, image = img_box1)
-box1_id = canvas.create_image(1350, 690, image = img_box1)
-box1_id = canvas.create_image(1350, 635, image = img_box1)
-box1_id = canvas.create_image(1350, 580, image = img_box1)
+box1_id = canvas.create_image(1250, 690, image = img_box1,tags='BOX')
+box1_id = canvas.create_image(1300, 690, image = img_box1,tags='BOX')
+box1_id = canvas.create_image(1300, 635, image = img_box1,tags='BOX')
+box1_id = canvas.create_image(1350, 690, image = img_box1,tags='BOX')
+box1_id = canvas.create_image(1350, 635, image = img_box1,tags='BOX')
+box1_id = canvas.create_image(1350, 580, image = img_box1,tags='BOX')
 
-box1_id = canvas.create_image(2000, 690, image = img_box1)
-box1_id = canvas.create_image(2080, 630, image = img_box1)
-box1_id = canvas.create_image(2140, 630, image = img_box1)
-box1_id = canvas.create_image(2200, 630, image = img_box1)
-box1_id = canvas.create_image(2260, 630, image = img_box1)
+box1_id = canvas.create_image(2000, 690, image = img_box1,tags='BOX')
+box1_id = canvas.create_image(2080, 630, image = img_box1,tags='BOX')
+box1_id = canvas.create_image(2140, 630, image = img_box1,tags='BOX')
+box1_id = canvas.create_image(2200, 630, image = img_box1,tags='BOX')
+box1_id = canvas.create_image(2260, 630, image = img_box1,tags='BOX')
 
-box1_id = canvas.create_image(2800, 690, image = img_box1)
-box1_id = canvas.create_image(3333, 690, image = img_box1)
-box1_id = canvas.create_image(3460, 690, image = img_box1)
+box1_id = canvas.create_image(2800, 690, image = img_box1,tags='BOX')
+box1_id = canvas.create_image(3333, 690, image = img_box1,tags='BOX')
+box1_id = canvas.create_image(3460, 690, image = img_box1,tags='BOX')
 
-box1_id = canvas.create_image(3000, 300, image = img_box1)
-box1_id = canvas.create_image(3070, 300, image = img_box1)
-box1_id = canvas.create_image(1700, 350, image = img_box1)
-box1_id = canvas.create_image(1700, 400, image = img_box1)
-box1_id = canvas.create_image(1700, 450, image = img_box1)
-box1_id = canvas.create_image(1700, 500, image = img_box1)
-box1_id = canvas.create_image(1700, 550, image = img_box1)
-box1_id = canvas.create_image(1700, 600, image = img_box1)
-box1_id = canvas.create_image(1700, 650, image = img_box1)
-box1_id = canvas.create_image(1700, 690, image = img_box1)
+box1_id = canvas.create_image(3000, 300, image = img_box1,tags='BOX')
+box1_id = canvas.create_image(3070, 300, image = img_box1,tags='BOX')
+box1_id = canvas.create_image(1700, 350, image = img_box1,tags='BOX')
+box1_id = canvas.create_image(1700, 400, image = img_box1,tags='BOX')
+box1_id = canvas.create_image(1700, 450, image = img_box1,tags='BOX')
+box1_id = canvas.create_image(1700, 500, image = img_box1,tags='BOX')
+box1_id = canvas.create_image(1700, 550, image = img_box1,tags='BOX')
+box1_id = canvas.create_image(1700, 600, image = img_box1,tags='BOX')
+box1_id = canvas.create_image(1700, 650, image = img_box1,tags='BOX')
+box1_id = canvas.create_image(1700, 690, image = img_box1,tags='BOX')
 
-box1_id = canvas.create_image(1700, 200, image = img_box1)
+box1_id = canvas.create_image(1700, 200, image = img_box1,tags='BOX')
 
 
 # ..................dimond​​ score.............
