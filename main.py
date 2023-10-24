@@ -50,13 +50,27 @@ img_bom2 =ImageTk.PhotoImage(bom2_image)
 
 bg1_image = Image.open('images/bg1.png')
 img_bg1 =ImageTk.PhotoImage(bg1_image)
+
+#...........shark..............
+shark1_image = Image.open('images/fishes/fish Shark/shark1.png')
+shark1_resize = shark1_image.resize((250,100))
+img_shark1 =ImageTk.PhotoImage(shark1_resize)
+
+# shark4_image = Image.open('images/fishes/fish Shark/shark4.png')
+# shark4_resize = shark4_image.resize((250,100))
+# img_shark4 =ImageTk.PhotoImage(shark4_resize)
+
+shark2_image = Image.open('images/fishes/fish Shark/shark 2.png')
+shark2_resize = shark2_image.resize((250,100))
+img_shark2 =ImageTk.PhotoImage(shark2_resize)
     
 
-# image_bubble_list = []
-# for i in range(50):
-#     bubble1_image = Image.open('images/bubbles/bubble1.png')
-#     bubble1 = ImageTk.PhotoImage(bubble1_image)
-#     image_bubble_list.append(bubble1)
+image_bubble_list = []
+for i in range(50):
+    shark1_image = Image.open('images/fishes/fish Shark/shark1.png')
+    shark1_resize = shark1_image.resize((250,100))
+    img_shark1 =ImageTk.PhotoImage(shark1_resize)
+    image_bubble_list.append(img_shark1)
     
 # # Iterate over the list of PhotoImage objects and create a create_image() item for each image.
 # x=0
@@ -209,7 +223,45 @@ for img in image_list:
 bom_id = canvas.create_image(190, 200, image = img_bom, tags= 'BOM')
 bom2_id = canvas.create_image(500, 685, image = img_bom2, tags = 'BOM')
 
-#--------------------------Create a falling object (Fish)--------------------------
+#------------Create a falling object (Fish)--------------
+
+anime1_id = canvas.create_image(800, 800, image=img_shark1, tags = 'ANIME')
+anime2_id = canvas.create_image(1600, 400, image=img_shark2, tags = 'ANIME')
+
+
+# -------------make fish1 run -----------
+
+image_fish_list = []
+for i in range(50):
+    shark1_image = Image.open('images/fishes/fish Shark/shark1.png')
+    shark1_resize = shark1_image.resize((250,100))
+    img_shark1 =ImageTk.PhotoImage(shark1_resize)
+    image_fish_list.append(img_shark1)
+
+# --------Iterate over the list of PhotoImage objects and create a create_image() item for each image.---------
+canvas.create_image(x, y, image=image, tag="ANIME")
+
+# Function to update the object's position
+def update_position_right():
+    fish_coods = canvas.coords('ANIME')
+
+    if fish_coods[0]< 0:
+        canvas.move('ANIME', 3, 0)
+        
+        window.after(10, update_position_right)
+    else:
+        update_position_left()
+
+def update_position_left():
+    fish_coods = canvas.coords('ANIME')
+    if fish_coods[0]> -1000 :
+        canvas.move('ANIME', -2, 0)
+        window.after(10, update_position_left)
+
+window.after(30, update_position_right)
+
+
+
 
 
 
@@ -229,7 +281,6 @@ dimond1_id = canvas.create_image(1900, 690, image = img_dimond1, tags= 'DIAMOND'
 #--------------------------Create a falling object (shark)--------------------------
 
 shark1_id = canvas.create_image(2000, 500, image = img_shark1)
-shark2_id = canvas.create_image(3000, 500, image = img_shark2)
 
 # --------------------------Create a falling object (box)--------------------------
 
