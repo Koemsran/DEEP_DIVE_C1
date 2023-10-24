@@ -51,26 +51,14 @@ img_bom2 =ImageTk.PhotoImage(bom2_image)
 bg1_image = Image.open('images/bg1.png')
 img_bg1 =ImageTk.PhotoImage(bg1_image)
 
-#...........shark..............
-shark1_image = Image.open('images/fishes/fish Shark/shark1.png')
-shark1_resize = shark1_image.resize((250,100))
-img_shark1 =ImageTk.PhotoImage(shark1_resize)
-
-# shark4_image = Image.open('images/fishes/fish Shark/shark4.png')
-# shark4_resize = shark4_image.resize((250,100))
-# img_shark4 =ImageTk.PhotoImage(shark4_resize)
-
-shark2_image = Image.open('images/fishes/fish Shark/shark 2.png')
-shark2_resize = shark2_image.resize((250,100))
-img_shark2 =ImageTk.PhotoImage(shark2_resize)
+# ..............group fish image..............
     
-
-image_bubble_list = []
-for i in range(50):
-    shark1_image = Image.open('images/fishes/fish Shark/shark1.png')
-    shark1_resize = shark1_image.resize((250,100))
-    img_shark1 =ImageTk.PhotoImage(shark1_resize)
-    image_bubble_list.append(img_shark1)
+# image_bubble_list = []
+# for i in range(50):
+#     buble1_image = Image.open('images/bubbles/bubble1.png')
+#     bubble1_resize = buble1_image.resize((250,100))
+#     img_bubble1 =ImageTk.PhotoImage(bubble1_resize)
+#     image_bubble_list.append(img_bubble1)
     
 # # Iterate over the list of PhotoImage objects and create a create_image() item for each image.
 # x=0
@@ -102,23 +90,6 @@ for i in range(50):
 
 # window.after(30, update_position_up)
 
-# ..............group fish image..............
-
-# image_fish_list = []
-# for i in range(1,8):
-#     fish_image = Image.open('images/fishes/fish'+str(i)+'.gif')
-#     fish_resize = fish_image.resize((100,100))
-#     img_fish =ImageTk.PhotoImage(fish_resize)
-#     image_fish_list.append(img_fish)
-    
-#.........Iterate over the list of PhotoImage objects and create a create_image() item for each image..........
-# x=10
-# y=10
-# for fish in image_fish_list:
-#     canvas.create_image(x, y, image=fish, tag="FISH")
-#     x+=300
-#     y+=200
-
 
 #..............group dimond image..............
 
@@ -136,15 +107,19 @@ box1_image = Image.open('images/box/box.png')
 box1_resize = box1_image.resize((60,60))
 img_box1 =ImageTk.PhotoImage(box1_resize)
 
-#...........shark..............
+#...........enemies..............
+
 shark1_image = Image.open('images/enemies/enemy1.gif')
 shark1_resize = shark1_image.resize((250,100))
 img_shark1 =ImageTk.PhotoImage(shark1_resize)
 
-shark2_image = Image.open('images/enemies/enemt2.gif')
+shark2_image = Image.open('images/enemies/enemy2 1.png')
 shark2_resize = shark2_image.resize((250,100))
 img_shark2 =ImageTk.PhotoImage(shark2_resize)
 
+shark3_image = Image.open('images/enemies/animate1.png')
+shark3_resize = shark3_image.resize((250,100))
+img_shark3 =ImageTk.PhotoImage(shark3_resize)
 
 
 #--------------------------grass image--------------------------
@@ -224,54 +199,63 @@ bom2_id = canvas.create_image(500, 685, image = img_bom2, tags = 'BOM')
 
 #------------Create a falling object (Fish)--------------
 
-anime1_id = canvas.create_image(800, 800, image=img_shark1, tags = 'ANIME')
-anime2_id = canvas.create_image(1600, 400, image=img_shark2, tags = 'ANIMES')
+# anime1_id = canvas.create_image(800, 800, image=img_shark1, tags = 'ANIME')
+# anime2_id = canvas.create_image(1600, 400, image=img_shark2, tags = 'ANIME')
 
 
 # #make fish1 run
 # Iterate over the list of PhotoImage objects and create a create_image() item for each image.
-canvas.create_image(x, y, image=img, tag="ANIME")
-
+canvas.create_image(2000, 400, image=img_shark1, tag="ENEMY")
+canvas.create_image(500, 200, image=img_shark1, tag="ENEMY")
 # Function to update the object's position
 def update_position_right():
-    fish_coods = canvas.coords('ANIME')
-
-    if fish_coods[0]< 0:
-        canvas.move('ANIME', 3, 0)
-        
+    fish_coods = canvas.coords('ENEMY')
+    if fish_coods[0]< 3000:
+        canvas.itemconfigure('ENEMY', image = img_shark2 )
+        canvas.move('ENEMY', 3, 0)
         window.after(20, update_position_right)
     else:
         update_position_left()
 
 def update_position_left():
-    fish_coods = canvas.coords('ANIME')
-    if fish_coods[0]> -1000 :
-        canvas.move('ANIME', -2, 0)
+    fish_coods = canvas.coords('ENEMY')
+    if fish_coods[0]> -150 :
+        canvas.itemconfigure('ENEMY', image = img_shark1 )
+        canvas.move('ENEMY', -3, 0)
         window.after(20, update_position_left)
+    else:
+        update_position_right()
 
 window.after(20, update_position_right)
 
+
+# ---------change image as animated-----------
+def put_animated():
+    if update_position_right():
+        canvas.itemconfigure('ENEMY', image = img_shark3)
+        window.after(1, put_animated)
+window.after(1, put_animated)
 # Iterate over the list of PhotoImage objects and create a create_image() item for each image.
-canvas.create_image(x, y, image=img, tag="ANIMES")
+
 
 # Function to update the object's position
-def update_position_rights():
-    fish_coods = canvas.coords('ANIMES')
+# def update_position_rights():
+#     fish_coods = canvas.coords('ENEMY')
 
-    if fish_coods[0]< 0:
-        canvas.move('ANIMES', 3, 0)
+#     if fish_coods[0]< 0:
+#         canvas.move('ENEMY', 3, 0)
         
-        window.after(10, update_position_rights)
-    else:
-        update_position_lefts()
+#         window.after(10, update_position_rights)
+#     else:
+#         update_position_lefts()
 
-def update_position_lefts():
-    fish_coods = canvas.coords('ANIMES')
-    if fish_coods[0]> -1000 :
-        canvas.move('ANIMES', -2, 0)
-        window.after(10, update_position_lefts)
+# def update_position_lefts():
+#     fish_coods = canvas.coords('ENEMY')
+#     if fish_coods[0]> -1000 :
+#         canvas.move('ENEMY', -2, 0)
+#         window.after(10, update_position_lefts)
 
-window.after(30, update_position_rights)
+# window.after(30, update_position_rights)
 
 
 #--------------------------Create a falling object (stones)--------------------------
@@ -586,7 +570,7 @@ def gameShow(event):
 # canvas.create_image(660,280, image=btn_start_game, tags="startgame")
 # canvas.create_image(660,420, image=btn_continue_game, tags="continue")
 # canvas.create_image(655,550,image=btn_exit_game, tags="exit")
-# # winsound.PlaySound("sounds/open.wav",winsound.SND_FILENAME | winsound.SND_ASYNC)
+# # winsound.PlaySound("images/sounds/start.mp3",winsound.SND_FILENAME | winsound.SND_ASYNC)
 
 
 # ------------------Bind the button clicks to the corresponding functions------------------
