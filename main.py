@@ -583,8 +583,6 @@ def scroll_left(event):
 window.bind("<Key>", move_shape)
 
 
-
-
 # ------------------Varaible ------------------
 
 game_start = tk.PhotoImage(file="images/menus/bg_start.png")
