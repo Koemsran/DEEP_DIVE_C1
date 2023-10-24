@@ -31,10 +31,8 @@ frame.pack()
 canvas = tk.Canvas(frame, width=SCREEN_WIDTH, height=SCREEN_HEIGHT,  scrollregion= (0,0,4000,5000))
 canvas.pack()
 
-#.....score......
-score = 0
-
 #---------scrollbar-----------
+
 scrollbar_bottom = tk.Scrollbar(window, orient='horizontal', command=canvas.xview)
 canvas.configure(xscrollcommand=scrollbar_bottom.set)
 scrollbar_bottom.place(relx=0, rely=1, relwidth=1, anchor='sw')
@@ -50,46 +48,6 @@ img_bom2 =ImageTk.PhotoImage(bom2_image)
 
 bg1_image = Image.open('images/bg1.png')
 img_bg1 =ImageTk.PhotoImage(bg1_image)
-
-# ..............group fish image..............
-    
-# image_bubble_list = []
-# for i in range(50):
-#     buble1_image = Image.open('images/bubbles/bubble1.png')
-#     bubble1_resize = buble1_image.resize((250,100))
-#     img_bubble1 =ImageTk.PhotoImage(bubble1_resize)
-#     image_bubble_list.append(img_bubble1)
-    
-# # Iterate over the list of PhotoImage objects and create a create_image() item for each image.
-# x=0
-# y=0
-# for image in image_bubble_list:
-#     canvas.create_image(x, y, image=image, tag="BUBBLE")
-#     x+=100
-#     y+=100
-    
-# ..............Function to update the object's position..............
-
-# def update_position_down():
-#     bubble_coods = canvas.coords('BUBBLE')
-
-#     if bubble_coods[1]< 700:
-#         canvas.move('BUBBLE', 0, 3)
-        
-#         window.after(50, update_position_down)
-#     else:
-#         update_position_up()
-
-# def update_position_up():
-#     bubble_coods = canvas.coords('BUBBLE')
-#     if bubble_coods[1]> -200 :
-#         canvas.move('BUBBLE', 0, -2)
-#         window.after(30, update_position_up)
-#     else:
-#         update_position_down()
-
-# window.after(30, update_position_up)
-
 
 #..............group dimond image..............
 
@@ -155,7 +113,7 @@ fish9_image = Image.open('images/fishes/fish8.png')
 fish9_resize = fish9_image.resize((200,150))
 img_fish9 =ImageTk.PhotoImage(fish9_resize)
 
-#--------------------------grass image--------------------------
+#-----------grass image--------------
 
 grass1_image = Image.open('images/grasses/grass1.gif')
 grass1_resize = grass1_image.resize((100,300))
@@ -181,7 +139,7 @@ grass7_image = Image.open('images/grasses/grass7.png')
 grass7_resize = grass7_image.resize((200,150))
 img_grass7 =ImageTk.PhotoImage(grass7_resize)
 
-#--------------------------stones image--------------------------
+#-------------stones image----------------
 
 stone1_image = Image.open('images/stones/stone1.png')
 stone1_resize = stone1_image.resize((80,70))
@@ -207,7 +165,7 @@ flag_image = Image.open('images/flag.png')
 flag_resize = flag_image.resize((80,90))
 img_flag =ImageTk.PhotoImage(flag_resize)
 
-#--------------------------create canvas image bg--------------------------
+#------------------create canvas image bg------------------
 
 canvas.create_image(600,300, image =img_bg1)
 canvas.create_image(1800,300, image =img_bg1)
@@ -215,7 +173,7 @@ canvas.create_image(3000,300, image =img_bg1)
 canvas.create_image(4000,300, image =img_bg1)
 flag_id = canvas.create_image(3900, 670, image = img_flag, tags= 'FLAG')
 
-#-----------------canvas image border bottom--------------------------
+#------------canvas image border bottom--------------
 
 image_list = []
 for i in range(11):
@@ -243,7 +201,6 @@ bom3_id = canvas.create_image(2900, 130, image = img_bom3, tags = 'BOM')
 
 bubble_img = Image.open('images/bubbles/bubble1.png')
 bubble_id=ImageTk.PhotoImage(bubble_img)
-
 image_bubble_list = []
 for i in range(100):
     bubble_img = Image.open('images/bubbles/bubble1.png')
@@ -251,6 +208,7 @@ for i in range(100):
     image_bubble_list.append(bubble1)
     
 # -----Iterate over the list of PhotoImage objects and create a create_image() item for each image.----
+
 x=0
 y=0
 for image in image_bubble_list:
@@ -259,6 +217,7 @@ for image in image_bubble_list:
     y+=100
     
 # -----Function to update the object's position-----
+
 def update_position_down():
     bubble_coods = canvas.coords('BUBBLE')
 
@@ -279,14 +238,13 @@ def update_position_up():
 
 window.after(30, update_position_up)
 
-
-
-
-# #----make fish1 run----
 # Iterate over the list of PhotoImage objects and create a create_image() item for each image.
+
 canvas.create_image(2000, 400, image=img_shark1, tag="ENEMY")
 canvas.create_image(500, 200, image=img_shark1, tag="ENEMY")
-# Function to update the object's position
+
+#-----Function to update the object's position-----
+
 def update_position_right():
     fish_coods = canvas.coords('ENEMY')
     if fish_coods[0]< 4000:
@@ -307,18 +265,6 @@ def update_position_left():
 
 window.after(20, update_position_right)
 
-
-# ---------change image as animated-----------
-# def put_animated():
-#     if update_position_right():
-#         canvas.itemconfigure('ENEMY', image = img_shark3)
-#         window.after(1, put_animated)
-# window.after(1, put_animated)
-# Iterate over the list of PhotoImage objects and create a create_image() item for each image.
-
-
-
-# Create a falling object (stones)
 #--------------------------Create a falling object (stones)--------------------------
 
 stone3_id = canvas.create_image(1000, 685, image = img_stone3, tags= 'STONE')
@@ -326,7 +272,6 @@ stone2_id = canvas.create_image(2000, 685, image = img_stone2, tags= 'STONE')
 stone3_id = canvas.create_image(2900, 685, image = img_stone3, tags= 'STONE')
 stone1_id = canvas.create_image(200, 685, image = img_stone1, tags= 'STONE')
 
-# Create a falling object (dimond1)
 #--------------------------Create a falling object (dimond1)--------------------------
 
 dimond1_id = canvas.create_image(700, 690, image = img_dimond1, tags= 'DIAMOND')
@@ -337,7 +282,6 @@ dimond1_id = canvas.create_image(3000, 245, image = img_dimond1, tags= 'DIAMOND'
 # # Create a falling object (fishes)
 
 fish2_id = canvas.create_image(100, 200, image = img_fish2)
-# fish3_id = canvas.create_image(400, 300, image = img_fish3)
 fish4_id = canvas.create_image(250, 500, image = img_fish4)
 fish4_id = canvas.create_image(1200, 100, image = img_fish4)
 fish5_id = canvas.create_image(900, 690, image = img_fish5)
@@ -346,17 +290,6 @@ fish6_id = canvas.create_image(700, 200, image = img_fish6)
 fish7_id = canvas.create_image(800, 300, image = img_fish7)
 fish8_id = canvas.create_image(700, 500, image = img_fish8)
 fish9_id = canvas.create_image(300, 300, image = img_fish9)
-
-
-# # Create a falling object (shark)
-shark1_id = canvas.create_image(1000, 500, image = img_shark1)
-shark2_id = canvas.create_image(2500, 500, image = img_shark2)
-shark3_id = canvas.create_image(3500, 500, image = img_shark3)
-
-#.....Create a falling object (box)....
-#--------------------------Create a falling object (shark)--------------------------
-
-shark1_id = canvas.create_image(2000, 500, image = img_shark1)
 
 # --------------------------Create a falling object (box)--------------------------
 
@@ -391,18 +324,15 @@ box1_id = canvas.create_image(1700, 550, image = img_box1)
 box1_id = canvas.create_image(1700, 600, image = img_box1)
 box1_id = canvas.create_image(1700, 650, image = img_box1)
 box1_id = canvas.create_image(1700, 690, image = img_box1)
-
 box1_id = canvas.create_image(1700, 200, image = img_box1)
 
-
 # ..................dimond​​ score.............
-
-score_id = canvas.create_text(340, 50, text=" : 0 ", font=("bold", 20), fill="white")
-dimond2_id = canvas.create_image(300, 50, image = img_dimond2)
+canvas.create_text(800, 50, text=": 0", font=("bold", 20), fill="white", tags = 'SCORE')
+dimond2_id = canvas.create_image(760, 48, image = img_dimond2)
 
 ## .................Level...............
 
-score_id = canvas.create_text(150, 50, text="Level : 1 ", font=("bold", 20), fill="white")
+score_id = canvas.create_text(600, 50, text="Level : 1 ", font=("bold", 20), fill="white")
 
 
 # ------------------Function to update the object's position ------------------
@@ -436,7 +366,6 @@ def play_sound():
         pygame.time.wait(int(sound.get_length() * 1000))
 sound_thread = threading.Thread(target=play_sound)
 sound_thread.start()
-
 
 
 #------------------create player------------------
@@ -490,6 +419,15 @@ def game_lose():
             return True
     return False
 
+def game_lose1():
+    index =canvas.coords(player1)
+    boms=canvas.find_withtag('ENEMY')
+    over=canvas.find_overlapping(index[0], index[1], index[0]+img_bom.width(), index[1]+img_bom.height())
+    for bom in boms:
+        if bom in over:
+            return True
+    return False
+
 #  ------------------Window lose imge ------------------
 
 game =Image.open('images/bg1.png')
@@ -497,7 +435,6 @@ lose = ImageTk.PhotoImage(game)
 
 game_over =Image.open('images/game_over.png')
 over = ImageTk.PhotoImage(game_over)
-
 
 died =Image.open('images/died.png')
 resize =died.resize((120,100))
@@ -542,8 +479,6 @@ def win_window():
     time.sleep(1.5)
     mixer.music.stop()
 
-
-# Create a falling object (grasses)
 #  ------------------Create a falling object (grasses) ------------------
 
 grass1_id = canvas.create_image(1200, 565, image = img_grass1)
@@ -567,8 +502,9 @@ def is_border_top():
 
 def is_border_bottom():
         return canvas.coords(player1)[1] > 653
-
+score = 0
 def move_shape(event):
+    global score
     if event.keysym == "Left" and not is_border_left():
         canvas.move(player1, -10, 0)
         canvas.itemconfigure(player1, image = player2_id)
@@ -585,6 +521,9 @@ def move_shape(event):
     shape2 = move_player2()
     if  game_lose():
         lose_window()
+    if game_lose1():
+        lose_window()
+
     if shape1>0:
         canvas.delete(shape1)
         mixer.init()
@@ -592,6 +531,11 @@ def move_shape(event):
         mixer.music.play()
         time.sleep(0.7)
         mixer.music.stop()
+
+    # sum score
+
+        score+=1
+        canvas.itemconfigure('SCORE', text=(":" +str(score)))
     if shape2>0:
         canvas.delete(shape2)
         win_window()
@@ -621,11 +565,13 @@ btn_continue_game = tk.PhotoImage(file="images/menus/continue_menu.png")
 btn_exit_game = tk.PhotoImage(file="images/menus/exit_menu.png")
 btn_back_game = tk.PhotoImage(file="images/menus/back_menu.png")
 
+##----back------
+canvas.create_image(110, 100, image=btn_back_game, tags="back")
 # level1 = tk.PhotoImage(file="images/menus/level1.png")
 # level2 = tk.PhotoImage(file="images/menus/level2.png")
 # level3 = tk.PhotoImage(file="images/menus/level3.png")
 
-# ------------------Show start game ------------------
+# #------------------Show start game ------------------
 def gameShow(event):
     canvas.delete("all")
     canvas.create_image(680, 372, image=game_start)
@@ -634,7 +580,7 @@ def gameShow(event):
     canvas.create_image(660,420, image=btn_continue_game, tags="continue")
     canvas.create_image(655,550,image=btn_exit_game, tags="exit")
 
-# ------------------show level game ------------------
+## ------------------show level game ------------------
 
 # def levelGame(event):
 #     canvas.delete(all)
@@ -644,25 +590,25 @@ def gameShow(event):
 #     canvas.create_image(1100,372, image=level3)
 #     canvas.create_image(110, 100, image=btn_back_game, tags="back")
 
-# ------------------level1 of game ------------------
+## ------------------level1 of game ------------------
 
 # def showLevel1(event):
 #     canvas.create_image(50,60, image = img_bg1)  
 
 
-# ------------------show for how to play ------------------
+# #------------------show for how to play ------------------
 
 # def gameHelp(event):
 #     canvas.delete("all")
 #     canvas.create_image(680, 372, image=game_bg)
 #     canvas.create_image(110, 200, image=btn_back_game, tags="back")
 
-# ------------------close game ------------------
+# #------------------close game ------------------
 
 # def gameExit(event):
 #     window.destroy()
 
-# ------------------display winner ------------------
+##------------------display winner ------------------
 
 # canvas.create_image(680, 372, image=game_start)
 # canvas.create_image(660,100, image=btn_menus_game, tags="menusgame")
@@ -672,12 +618,13 @@ def gameShow(event):
 # # winsound.PlaySound("images/sounds/start.mp3",winsound.SND_FILENAME | winsound.SND_ASYNC)
 
 
-# ------------------Bind the button clicks to the corresponding functions------------------
+## ------------------Bind the button clicks to the corresponding functions------------------
 
 # canvas.tag_bind("startgame", "<Button-1>",levelGame )
 # canvas.tag_bind("continue", "<Button-1>",levelGame )
 # canvas.tag_bind("exit", "<Button-1>", gameExit)
-canvas.tag_bind("back", "<Button-1>", lose_window, win_window)
+canvas.tag_bind("back", "<Button-1>", lose_window)
+canvas.tag_bind("back", "<Button-1>", win_window)
 # canvas.tag_bind("level1", "<Button-1>", showLevel1)
 
 
